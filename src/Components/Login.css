@@ -1,0 +1,90 @@
+/* AuthPage.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.auth-container {
+  display: flex;
+  height: 100vh;
+  transition: all 0.6s ease; /* Transition for smooth effect */
+}
+
+.background {
+  flex: 1; /* Take half the screen */
+  background-color: orange; /* Default color */
+  transition: transform 0.6s ease; /* Smooth transition for background */
+}
+
+.form-container {
+  flex: 1; /* Take half the screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  max-width: auto;
+  padding: 20px;
+  transition: transform 0.6s ease; /* Transition for form */
+}
+
+.form-design{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-form-design{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: orange;
+  height: 100vh;
+}
+
+.desktop{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field{
+  height: 30px;
+  width: 350px;
+}
+
+/* Adjust for login and signup */
+.auth-container.login {
+  transform: translateX(0); /* Default position for login */
+}
+
+.auth-container.signup {
+  transform: translateX(0); /* Keep the container in its initial position */
+}
+
+.background.login {
+  transform: translateX(0); /* Default position for background */
+}
+
+.background.signup {
+  transform: translateX(100%); /* Move right for signup */
+}
+
+.form.login-form {
+  transform: translateX(0); /* Default position for login form */
+}
+
+.form.signup-form {
+  transform: translateX(-230%); /* Move left for signup */
+}
+

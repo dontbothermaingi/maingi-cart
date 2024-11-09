@@ -26,12 +26,11 @@ function Navbar() {
             }
         })
         .then(response => {
-            if (response.status === 401) {
-                navigate('/login');
-            } else if (response.ok) {
-                return response.json();  // Fixed this line to call .json() as a method
+            // Check if the response indicates an error (e.g., unauthorized access)
+            if (response.ok) {
+                return response.json(); // Call the function to get the JSON data
             }
-        })
+          })
         .then(data => {
             if (data) {  // Check if data is received
                 setIsAuthenticated(true);

@@ -41,7 +41,7 @@ function EditProduct () {
     }
 
     useEffect(() => {
-        fetch(`/product/${productId}`, {
+        fetch(`https://maingi-shop-server.onrender.com/product/${productId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${access_token}`
@@ -139,7 +139,7 @@ function EditProduct () {
         formData.append('key_features', JSON.stringify(productData.key_features));
         formData.append('specifications', JSON.stringify(productData.specifications));
 
-        fetch(`/product/${productId}`, {
+        fetch(`https://maingi-shop-server.onrender.com/product/${productId}`, {
             method: 'PATCH',
             headers: { 'Authorization': `Bearer ${access_token}` },
             body: formData,

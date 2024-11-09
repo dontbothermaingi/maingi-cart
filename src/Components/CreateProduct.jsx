@@ -129,7 +129,7 @@ function CreateProduct (){
         formData.append('specifications', JSON.stringify(productData.specifications));
 
     
-        fetch('/products', {
+        fetch('https://maingi-shop-server.onrender.com/products', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${access_token}`

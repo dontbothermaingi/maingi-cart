@@ -9,7 +9,7 @@ function FullViewOrder() {
     const token = localStorage.getItem('access_token');
 
     useEffect(() => {
-        fetch(`/order/${orderId}`, {
+        fetch(`https://maingi-shop-server.onrender.com/order/${orderId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -25,7 +25,7 @@ function FullViewOrder() {
     }, [token, orderId]);
 
     useEffect(() => {
-        fetch('/addressbook', {
+        fetch('https://maingi-shop-server.onrender.com/addressbook', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

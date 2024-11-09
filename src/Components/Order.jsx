@@ -55,7 +55,7 @@ function Order (){
         };
         
 
-        fetch('/neworder', {
+        fetch('https://maingi-shop-server.onrender.com/neworder', {
             method:'POST',
             headers:{
                 'Authorization':`Bearer ${token}`,
@@ -96,7 +96,7 @@ function Order (){
 
 
     useEffect(() => {
-        fetch('/cart', {
+        fetch('https://maingi-shop-server.onrender.com/cart', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -121,7 +121,7 @@ function Order (){
     const isMobile = useMediaQuery('(max-width: 768px)');
 
     useEffect(() => {
-        fetch('/addressbook', {
+        fetch('https://maingi-shop-server.onrender.com/addressbook', {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -156,7 +156,7 @@ function Order (){
     function handleSubmit(event){
             event.preventDefault()
 
-            fetch('/addressbook', {
+            fetch('https://maingi-shop-server.onrender.com/addressbook', {
             method:'PATCH',
             headers:{
                 'Content-Type':'application/json',

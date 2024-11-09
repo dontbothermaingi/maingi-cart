@@ -22,7 +22,7 @@ function UserAccount({ onLogout }) {
     const isTablet = useMediaQuery('(min-width: 769px) and (max-width: 1020px)');
 
     useEffect(() => {
-        fetch('/products', {
+        fetch('https://maingi-shop-server.onrender.com/products', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${access_token}`,
@@ -38,7 +38,7 @@ function UserAccount({ onLogout }) {
         event.preventDefault();
 
         const token = localStorage.getItem('access_token');
-        fetch('/userLogout', {
+        fetch('https://maingi-shop-server.onrender.com/userLogout', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

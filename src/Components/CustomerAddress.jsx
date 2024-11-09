@@ -25,7 +25,7 @@ function CustomerAddress(){
   function handleSubmit(event){
     event.preventDefault()
 
-    fetch('/addressbook', {
+    fetch('https://maingi-shop-server.onrender.com/addressbook', {
       method:'POST',
       headers:{
         'Content-Type':'application/json',

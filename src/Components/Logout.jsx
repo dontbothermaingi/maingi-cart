@@ -9,7 +9,7 @@ function Logout({onLogout}) {
 
         const token = localStorage.getItem('access_token');
 
-        fetch('/userLogout', {
+        fetch('https://maingi-shop-server.onrender.com/userLogout', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

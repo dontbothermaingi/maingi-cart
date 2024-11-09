@@ -38,7 +38,7 @@ function ProductDisplay() {
             return;
         }
 
-        fetch('/cartitems', {
+        fetch('https://maingi-shop-server.onrender.com/cartitems', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ function ProductDisplay() {
             return;
         }
 
-        fetch(`/product/${productId}`, {
+        fetch(`https://maingi-shop-server.onrender.com/product/${productId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${access_token}`,

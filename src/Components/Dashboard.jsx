@@ -14,7 +14,7 @@ function Dashboard() {
 
 
     useEffect(() => {
-        fetch('/products', {
+        fetch('https://maingi-shop-server.onrender.com/products', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${access_token}`,

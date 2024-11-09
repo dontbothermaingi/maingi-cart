@@ -22,7 +22,7 @@ const isMobile = useMediaQuery('(max-width: 768px)');
 const isTablet = useMediaQuery('(min-width: 769px) and (max-width: 1020px)');
 
   useEffect(() => {
-    fetch('https://maingi-shop-server.onrender.com/addressbook', {
+    fetch('https://shop-maingi-server.onrender.com/addressbook', {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -55,7 +55,7 @@ const isTablet = useMediaQuery('(min-width: 769px) and (max-width: 1020px)');
   function handleSubmit(event){
     event.preventDefault()
 
-    fetch('https://maingi-shop-server.onrender.com/addressbook', {
+    fetch('https://shop-maingi-server.onrender.com/addressbook', {
       method:'PATCH',
       headers:{
         'Content-Type':'application/json',

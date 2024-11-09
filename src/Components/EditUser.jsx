@@ -20,7 +20,7 @@ function EditUser (){
     const access_token = localStorage.getItem('access_token')
 
     useEffect(()=> {
-        fetch('https://maingi-shop-server.onrender.com/userdetails', {
+        fetch('https://shop-maingi-server.onrender.com/userdetails', {
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -50,7 +50,7 @@ function EditUser (){
     function handleSubmit(event){
         event.preventDefault()
 
-        fetch('https://maingi-shop-server.onrender.com/userdetails', {
+        fetch('https://shop-maingi-server.onrender.com/userdetails', {
             method:"PATCH",
             headers:{
                 'Content-Type':'application/json',

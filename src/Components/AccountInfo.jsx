@@ -18,7 +18,7 @@ function AccountInfo() {
     const isTablet = useMediaQuery('(min-width: 769px) and (max-width: 1020px)');
 
     useEffect(() => {
-        fetch('https://maingi-shop-server.onrender.com/userdetails', {
+        fetch('https://shop-maingi-server.onrender.com/userdetails', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ function AccountInfo() {
     }, [access_token]);
 
     useEffect(() => {
-        fetch('https://maingi-shop-server.onrender.com/addressbook', {
+        fetch('https://shop-maingi-server.onrender.com/addressbook', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

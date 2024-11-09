@@ -18,7 +18,7 @@ function Navbar() {
     const isTablet = useMediaQuery('(min-width: 769px) and (max-width: 1350px)');
 
     useEffect(() => {
-        fetch('https://maingi-shop-server.onrender.com/check_session', {
+        fetch('https://shop-maingi-server.onrender.com/check_session', {
             method: 'GET',
             credentials: 'include',
             headers: {

@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        fetch('https://maingi-shop-server.onrender.com/cart', {
+        fetch('https://shop-maingi-server.onrender.com/cart', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -44,7 +44,7 @@ export const CartProvider = ({ children }) => {
 
     function updateQuantity(productId, newQuantity) {
         // Update the quantity in the backend
-        fetch(`https://maingi-shop-server.onrender.com/editcart/${productId}`, {
+        fetch(`https://shop-maingi-server.onrender.com/editcart/${productId}`, {
             method: "PATCH",
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -63,7 +63,7 @@ export const CartProvider = ({ children }) => {
             setCart(updatedCart);
 
 
-            fetch('https://maingi-shop-server.onrender.com/cart', {
+            fetch('https://shop-maingi-server.onrender.com/cart', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -88,7 +88,7 @@ export const CartProvider = ({ children }) => {
 
     function handleDelete(productId){
 
-        fetch(`https://maingi-shop-server.onrender.com/editcart/${productId}`, {
+        fetch(`https://shop-maingi-server.onrender.com/editcart/${productId}`, {
             method:'DELETE',
             headers: {
                 'Authorization':`Bearer ${token}`,
@@ -97,7 +97,7 @@ export const CartProvider = ({ children }) => {
         .then(response => response.json())
         .then((data)=>{
 
-            fetch('https://maingi-shop-server.onrender.com/cart', {
+            fetch('https://shop-maingi-server.onrender.com/cart', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -122,7 +122,7 @@ export const CartProvider = ({ children }) => {
 
     function handleCartItemsDelete(){
 
-        fetch('https://maingi-shop-server.onrender.com/cart', {
+        fetch('https://shop-maingi-server.onrender.com/cart', {
             method:'DELETE',
             headers:{
                 'Authorization':`Bearer ${token}`

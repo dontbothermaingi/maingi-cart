@@ -46,7 +46,7 @@ function Login({ onLogin }) {
         event.preventDefault();
 
         // Check for correct username and password
-            fetch('https://maingi-shop-server.onrender.com/userLogin', {
+            fetch('https://shop-maingi-server.onrender.com/userLogin', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ function Login({ onLogin }) {
         e.preventDefault();
         
         try {
-            const response = await fetch('https://maingi-shop-server.onrender.com/userRegister', {
+            const response = await fetch('https://shop-maingi-server.onrender.com/userRegister', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'  

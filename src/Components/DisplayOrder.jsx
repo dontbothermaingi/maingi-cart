@@ -15,7 +15,7 @@ function DisplayOrder() {
             return;
         }
 
-        fetch('https://maingi-shop-server.onrender.com/orderitems', {
+        fetch('https://shop-maingi-server.onrender.com/orderitems', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`

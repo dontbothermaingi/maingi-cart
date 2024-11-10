@@ -179,8 +179,8 @@ function DisplayOrder() {
                     </Box>
 
                 ))):(
-                    <Typography variant="h6" color="textSecondary">
-                        No orders found or failed to load.
+                    <Typography fontSize={'27px'} fontStyle={'bold'} textAlign={'center'}>
+                        No orders found!
                     </Typography>
                 )}
             </Box>

@@ -141,7 +141,7 @@ function EditProduct () {
 
         fetch(`https://shop-maingi-server.onrender.com/product/${productId}`, {
             method: 'PATCH',
-            headers: { 'Authorization': `Bearer ${access_token}`, 'Content-Type': 'multipart/form-data', },
+            headers: { 'Authorization': `Bearer ${access_token}`},
             body: formData,
             credentials: 'include'
         })

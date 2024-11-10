@@ -22,7 +22,13 @@ function DisplayOrder() {
             },
             credentials: 'include'
         })
-        .then(response => response.json())
+    .then(response => {
+        if(!response.ok){
+            setError('You have no orders')
+        }else{
+            return response.json()
+        }
+    })
         .then((data) => {
             console.log(data);
             setOrders(data);
@@ -33,18 +39,10 @@ function DisplayOrder() {
         navigate(`/order/${orderId}`);
     }
 
-    if (error) {
-        return (
-            <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-                <Typography variant="h6">{error}</Typography>
-            </Box>
-        );
-    }
-
     return (
         <Box>
             {orders.length === 0 ? (
-                <Typography>You have no orders</Typography>
+                <Typography fontSize={'27px'} fontStyle={'bold'} textAlign={'center'}>{error}</Typography>
             ):(
                 <Box>
                 <Box ml={'30px'}>

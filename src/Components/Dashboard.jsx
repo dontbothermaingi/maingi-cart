@@ -98,7 +98,7 @@ function Dashboard() {
                                     component="img"
                                     sx={{ borderRadius: '12px', objectFit: 'cover', width: '70%' }}
                                     image={
-                                        item.product_image.startsWith('images/')
+                                        item.product_image.startsWith('/images')
                                           ? `https://shop-maingi-server.onrender.com/${item.product_image.replace(/^\/+/, '')}`
                                           : `https://shop-maingi-server.onrender.com/images/${item.product_image.replace(/^\/+/, '')}`
                                       }

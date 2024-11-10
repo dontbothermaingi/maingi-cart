@@ -132,7 +132,8 @@ function CreateProduct (){
         fetch('https://shop-maingi-server.onrender.com/products', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${access_token}`
+                'Authorization': `Bearer ${access_token}`,
+                'Content-Type':'multipart/form-data'
                 // Note: Do NOT set 'Content-Type' header when sending FormData, as it will be set automatically
             },
             body: formData,
@@ -197,6 +198,7 @@ function CreateProduct (){
                             <input
                                 type="file"
                                 name="product_image"
+                                accept="image/*"
                                 onChange={handleProductChange}
                             />
 

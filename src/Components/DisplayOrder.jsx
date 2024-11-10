@@ -55,8 +55,7 @@ function DisplayOrder() {
 
                 <Divider orientation="horizontal" sx={{ marginLeft: '30px', marginRight: '30px', marginBottom: '30px' }} />
 
-
-                <Box
+                {orders ? (<Box
                     display="grid"
                     gridTemplateColumns={{
                         xs: 'repeat(1, 1fr)', // 1 card per row on extra-small screens
@@ -71,7 +70,7 @@ function DisplayOrder() {
                     overflow={'auto'}
                 >
 
-                {orders ? (orders.map(order => (
+                {orders.map(order => (
                     <Box key={order.id}>
                         
                             <Card
@@ -178,12 +177,14 @@ function DisplayOrder() {
                             </Card>
                     </Box>
 
-                ))):(
+                ))}
+                </Box>
+                ):(
                     <Typography fontSize={'27px'} fontStyle={'bold'} textAlign={'center'}>
                         No orders found!
                     </Typography>
                 )}
-            </Box>
+                
                 
                 </Box>
             )}

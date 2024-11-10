@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 function DisplayOrder() {
     const token = localStorage.getItem('access_token');
     const [orders, setOrders] = useState([]);
-    const [error, setError] = useState("No orders found!");  // State to hold error messages
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -31,7 +30,6 @@ function DisplayOrder() {
         })
         .then((data) => {
                 setOrders(data);
-                setError('');  // Clear the error if there are orders
         })
         .catch(() => {
             setError('An error occurred while fetching your orders.');

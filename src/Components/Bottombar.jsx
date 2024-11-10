@@ -1,7 +1,5 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
-import Inventory2Outlined from "@mui/icons-material/Inventory2Outlined";
-import Favorite from "@mui/icons-material/Favorite";
 import ReceiptLongOutlined from "@mui/icons-material/ReceiptLongOutlined";
 import { useNavigate} from "react-router-dom";
 import { Badge} from "@mui/material";
@@ -37,26 +35,12 @@ function Bottombar(){
             </Typography>
 
             <Typography display='flex' flexDirection='column' alignItems='center'>
-                <IconButton>
-                    <Inventory2Outlined />
-                </IconButton>
-                Catalog
-            </Typography>
-
-            <Typography display='flex' flexDirection='column' alignItems='center'>
             <IconButton onClick={handleCart}>
                 <Badge badgeContent={carts.cart_quantity} color="primary">
                     <ShoppingCartIcon />
                 </Badge>
             </IconButton>
                 Cart
-            </Typography>
-
-            <Typography display='flex' flexDirection='column' alignItems='center'>
-                <IconButton>
-                    <Favorite />
-                </IconButton>
-                Favourite
             </Typography>
 
             <Typography display='flex' flexDirection='column' alignItems='center'>

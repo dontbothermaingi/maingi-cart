@@ -97,7 +97,12 @@ function Dashboard() {
                                 <CardMedia
                                     component="img"
                                     sx={{ borderRadius: '12px', objectFit: 'cover', width: '70%' }}
-                                    image={`https://shop-maingi-server.onrender.com/${item.product_image}`}
+                                    image={
+                                        item.product_image.startsWith('images/')
+                                          ? `https://shop-maingi-server.onrender.com/${item.product_image.replace(/^\/+/, '')}`
+                                          : `https://shop-maingi-server.onrender.com/images/${item.product_image.replace(/^\/+/, '')}`
+                                      }
+                                      
                                     alt={item.product_name}
                                     onClick={() => handleProductDisplay(item.id)}
                                 />

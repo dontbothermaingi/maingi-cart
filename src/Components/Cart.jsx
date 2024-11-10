@@ -43,7 +43,7 @@ function Cart() {
     
                             <Box
                                 display="grid"
-                                gridTemplateColumns={{ xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)', md: 'repeat(3, 1fr)' }}
+                                gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(3, 1fr)', md: 'repeat(3, 1fr)' }}
                                 gridAutoRows="auto"
                                 gap="20px"
                                 margin="0 10px"

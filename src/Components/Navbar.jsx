@@ -1,4 +1,4 @@
-import { ArrowDropDownOutlined, ArrowDropUpOutlined, ShoppingCart,} from "@mui/icons-material";
+import { ShoppingCart,} from "@mui/icons-material";
 import { Badge, Box, Button, IconButton,Typography, useMediaQuery} from "@mui/material";
 import PersonOutlineOutlined from "@mui/icons-material/PersonOutlineOutlined";
 import { useEffect, useState } from "react";
@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "./CartContext";
 
 function Navbar() {
-    const [activeSelection, setActiveSelection] = useState(null);
     const navigate = useNavigate();
     const accessToken = localStorage.getItem('access_token');
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -41,11 +40,6 @@ function Navbar() {
         });
     }, [navigate, accessToken]);
 
-
-    function handleDropDown(dropdown) {
-        setActiveSelection(activeSelection === dropdown ? null : dropdown);
-    }
-
     function handleCart() {
         navigate('/cart');
     }
@@ -68,14 +62,6 @@ function Navbar() {
 
     const menuItems = (
         <Box display='flex' flexDirection={isMobile ? 'column' : 'row'} alignItems='center' gap={isMobile ? '20px' : '30px'}>
-            <Typography fontSize='19px' onClick={() => handleDropDown('categories')} display='flex' alignItems='center'>
-                Categories
-                {activeSelection === 'categories' ? (
-                    <ArrowDropUpOutlined />
-                ) : (
-                    <ArrowDropDownOutlined />
-                )}
-            </Typography>
             <Typography fontSize='19px' onClick={handleOrders} sx={{cursor:'pointer'}}>Orders</Typography>
         </Box>
     );

@@ -133,7 +133,6 @@ function CreateProduct (){
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${access_token}`,
-                'Content-Type':'multipart/form-data'
                 // Note: Do NOT set 'Content-Type' header when sending FormData, as it will be set automatically
             },
             body: formData,

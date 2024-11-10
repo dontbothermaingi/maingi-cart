@@ -49,8 +49,8 @@ function DisplayOrder() {
 
     return (
         <Box>
-            {orders || error ? (
-                <Typography fontSize={'27px'} fontStyle={'bold'} textAlign={'center'}>{error}</Typography>
+            {orders ? (
+                <Typography fontSize={'27px'} fontStyle={'bold'} textAlign={'center'}>No orders found</Typography>
             ):(
                 <Box>
                 <Box ml={'30px'}>

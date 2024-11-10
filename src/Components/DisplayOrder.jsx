@@ -75,7 +75,7 @@ function DisplayOrder() {
                     overflow={'auto'}
                 >
 
-                {orders.map(order => (
+                {orders ? (orders.map(order => (
                     <Box key={order.id}>
                         
                             <Card
@@ -182,7 +182,11 @@ function DisplayOrder() {
                             </Card>
                     </Box>
 
-                ))}
+                ))):(
+                    <Typography variant="h6" color="textSecondary">
+                        No orders found or failed to load.
+                    </Typography>
+                )}
             </Box>
                 
                 </Box>

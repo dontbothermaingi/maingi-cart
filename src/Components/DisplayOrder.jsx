@@ -43,7 +43,7 @@ function DisplayOrder() {
 
     return (
         <Box>
-            {orders.length > 0 ? (
+            {orders.length === 0 ? (
                 <Typography>You have no orders</Typography>
             ):(
                 <Box>

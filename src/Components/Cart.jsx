@@ -66,7 +66,7 @@ function Cart() {
                                                 boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
                                             },
                                             '@media (max-width:600px)': {
-                                                height: '370px',
+                                                height: '390px',
                                             },
                                         }}
                                     >

@@ -11,7 +11,7 @@ function Relative (){
       const isTablet = useMediaQuery('(min-width: 769px) and (max-width: 1350px)');
 
     return ( 
-        <Box display="flex" flexDirection="column" height="100vh">
+        <Box display="flex" flexDirection="column" height="95vh">
 
             <Navbar />
 

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function DisplayOrder() {
     const token = localStorage.getItem('access_token');
     const [orders, setOrders] = useState([]);
-    const [error, setError] = useState("");  // State to hold error messages
+    const [error, setError] = useState("No orders found!");  // State to hold error messages
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -24,18 +24,14 @@ function DisplayOrder() {
         })
         .then(response => {
             if (!response.ok) {
-                setError('Failed to fetch orders. Please try again later.');
+                console.log('Failed to fetch orders. Please try again later.');
                 return;
             }
             return response.json();
         })
         .then((data) => {
-            if (data && data.length === 0) {
-                setError('You have no orders.');
-            } else {
                 setOrders(data);
                 setError('');  // Clear the error if there are orders
-            }
         })
         .catch(() => {
             setError('An error occurred while fetching your orders.');
@@ -50,7 +46,7 @@ function DisplayOrder() {
     return (
         <Box>
             {orders ? (
-                <Typography fontSize={'27px'} fontStyle={'bold'} textAlign={'center'}>No orders found</Typography>
+                <Typography fontSize={'27px'} fontStyle={'bold'} textAlign={'center'}>{error}</Typography>
             ):(
                 <Box>
                 <Box ml={'30px'}>

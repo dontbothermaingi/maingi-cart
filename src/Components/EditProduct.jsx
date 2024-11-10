@@ -141,7 +141,7 @@ function EditProduct () {
 
         fetch(`https://shop-maingi-server.onrender.com/product/${productId}`, {
             method: 'PATCH',
-            headers: { 'Authorization': `Bearer ${access_token}` },
+            headers: { 'Authorization': `Bearer ${access_token}`, 'Content-Type': 'multipart/form-data', },
             body: formData,
             credentials: 'include'
         })
@@ -174,7 +174,7 @@ function EditProduct () {
                 <form style={{display:'flex', flexDirection:'column', margin:'30px'}} onSubmit={handleSubmit}>
                     <Box display={'flex'} flexDirection={'column'}>
                         <Box sx={{ border: '1px solid grey', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', mb: '20px', borderRadius: '5px' }}>
-                            <input type="file" name="product_image" onChange={handleProductChange} />
+                            <input type="file" name="product_image" accept="image/*" onChange={handleProductChange} />
                         </Box>
                         <Box display={'flex'} gap={'20px'} flexDirection={{xs:'column', md:'horizontal'}}>
                             <TextField variant="outlined" label='Product Name' type="text" value={productData.product_name} name="product_name" onChange={handleProductChange} sx={{ mb: '20px' }} />

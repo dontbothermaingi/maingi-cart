@@ -100,19 +100,22 @@ function EditProduct () {
 
     function addSpecificationItem() {
         if (editSpecificationIndex !== null) {
+            // If editing an existing specification, update it
             const updatedSpecifications = [...productData.specifications];
-            updatedSpecifications[editSpecificationIndex] = specificationData;
+            updatedSpecifications[editSpecificationIndex] = specificationData; // Replace the specification at the edit index
             setProductData(prev => ({ ...prev, specifications: updatedSpecifications }));
-            setEditSpecificationIndex(null);
-            setSpecificationData({ header: "", content: "" });
+            setEditSpecificationIndex(null);  // Reset edit state
+            setSpecificationData({ header: "", content: "" });  // Reset input fields
         } else {
+            // If adding a new specification, add to the array
             setProductData(prevProductData => ({
                 ...prevProductData,
                 specifications: [...prevProductData.specifications, specificationData]
             }));
-            setSpecificationData({ header: "", content: "" });
+            setSpecificationData({ header: "", content: "" });  // Reset input fields
         }
     }
+    
 
     function handleDeleteFeatureItem(index) {
         setProductData(prevProductData => ({

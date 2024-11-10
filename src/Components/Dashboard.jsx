@@ -186,6 +186,7 @@ function Dashboard() {
                                     alt={item.product_name}
                                     onClick={() => handleProductDisplay(item.id)}
                                 />
+                                <img src={item.product_image} alt={item.product_name}/>
 
                                 <CardContent sx={{ textAlign: 'center', padding: '10px' }}>
                                     <Typography variant="h6" fontWeight="bold" gutterBottom>

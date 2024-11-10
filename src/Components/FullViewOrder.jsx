@@ -198,7 +198,7 @@ function FullViewOrder() {
                                                 <CardMedia
                                                     component="img"
                                                     sx={{ borderRadius: '12px', objectFit: 'cover', width: ({xs:'30%',md:'10%'}) }}
-                                                    image={`${product.product_image}`} // Make sure this path is correct
+                                                    image={`https://shop-maingi-server.onrender.com${item.product_image}`}
                                                     alt={product.product_name}
                                                 />
 

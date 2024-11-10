@@ -682,7 +682,7 @@ function Order (){
                                                 <CardMedia
                                                     component="img"
                                                     sx={{ borderRadius: '12px', objectFit: 'cover', width: '70%',  }}
-                                                    image={`${item.product_image}`} // Ensure this matches your backend setup} // Adjust the path if needed
+                                                    image={`https://shop-maingi-server.onrender.com${item.product_image}`}
                                                     alt="Sony Headphones"
                                                 />
     
@@ -906,7 +906,7 @@ function Order (){
                                                 <CardMedia
                                                     component="img"
                                                     sx={{ borderRadius: '12px', objectFit: 'cover', width: '70%',  }}
-                                                    image={`${item.product_image}`} // Ensure this matches your backend setup} // Adjust the path if needed
+                                                    image={`https://shop-maingi-server.onrender.com${item.product_image}`}
                                                     alt="Sony Headphones"
                                                 />
     

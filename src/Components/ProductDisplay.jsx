@@ -146,7 +146,7 @@ function ProductDisplay() {
                     }}
                 >
                     <img
-                    src={product.product_image}
+                    src={`https://shop-maingi-server.onrender.com${item.product_image}`}
                     alt="headphones"
                     style={{ maxHeight: "100%", maxWidth: "100%" }}
                     />
@@ -314,7 +314,7 @@ function ProductDisplay() {
                     }}
                 >
                     <img
-                    src={product.product_image}
+                    src={`https://shop-maingi-server.onrender.com${item.product_image}`}
                     alt="headphones"
                     style={{ maxHeight: "100%", maxWidth: "100%" }}
                     />

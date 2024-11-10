@@ -49,7 +49,7 @@ function DisplayOrder() {
 
     return (
         <Box>
-            {orders.length === 0 || error ? (
+            {orders || error ? (
                 <Typography fontSize={'27px'} fontStyle={'bold'} textAlign={'center'}>{error}</Typography>
             ):(
                 <Box>

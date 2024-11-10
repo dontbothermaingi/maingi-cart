@@ -45,9 +45,6 @@ function DisplayOrder() {
 
     return (
         <Box>
-            {orders ? (
-                <Typography fontSize={'27px'} fontStyle={'bold'} textAlign={'center'}>{error}</Typography>
-            ):(
                 <Box>
                 <Box ml={'30px'}>
                     <Typography fontSize={'25px'} fontWeight={'bold'}>Orders</Typography>
@@ -187,7 +184,6 @@ function DisplayOrder() {
                 
                 
                 </Box>
-            )}
             
         </Box>
     );

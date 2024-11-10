@@ -152,7 +152,7 @@ function DisplayOrder() {
                                                     <Typography variant="h8" fontWeight="bold" gutterBottom>
                                                         {product.product_name}
                                                     </Typography>
-                                                    <Box display={'flex'} flexDirection={{xs:'column', md:'row'}} gap={{md:'5px'}}>
+                                                    <Box display={'flex'} gap={'5px'}>
                                                         <Typography>
                                                             {new Intl.NumberFormat('en-KE',{currency:'KES', style:'currency'}).format(product.product_price)} 
                                                         </Typography>
@@ -170,7 +170,7 @@ function DisplayOrder() {
 
                                 {/* Bottom Part */}
                                 <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} marginLeft={'20px'} marginRight={'20px'}>
-                                    <Box display={'flex'} gap={'5px'}>
+                                    <Box display={'flex'} flexDirection={{xs:'column', md:'row'}} gap={'5px'}>
                                         <Typography>{new Intl.NumberFormat('en-KE',{currency:'KES', style:'currency'}).format(order.order_amount || 0)}</Typography>
                                         <Typography color="grey">({order.order_quantity || 0} items)</Typography>
                                     </Box>

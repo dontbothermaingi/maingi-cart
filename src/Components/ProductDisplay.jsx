@@ -10,7 +10,7 @@ function ProductDisplay() {
     const access_token = localStorage.getItem('access_token');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);  // State to hold error messages
-    const { addToCart } = useCart();
+    const { addToCart, handleCart } = useCart();
     const navigate = useNavigate();  // To redirect to login if necessary
 
     const [cartData, setCartData] = useState({
@@ -63,6 +63,7 @@ function ProductDisplay() {
         })
         .then((data) => {
             console.log("Added to cart:", data);
+            handleCart()
         })
         .catch((error) => {
             console.error("Error adding to cart:", error);

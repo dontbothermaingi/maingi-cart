@@ -17,30 +17,31 @@ export const CartProvider = ({ children }) => {
         setCartCount(prevCount => prevCount + 1);
     };
 
-    useEffect(() => {
-        fetch('https://shop-maingi-server.onrender.com/cart', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            credentials: "include"
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data)
-            setCart(data); // Ensure data is structured correctly
-            setCarts(data)
-        })
-        .catch((error) => {
-            console.error("Error fetching cart:", error);
-        });
-    }, [token]);
-
+    function handleCart(){
+        useEffect(() => {
+            fetch('https://shop-maingi-server.onrender.com/cart', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                credentials: "include"
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data)
+                setCart(data); // Ensure data is structured correctly
+                setCarts(data)
+            })
+            .catch((error) => {
+                console.error("Error fetching cart:", error);
+            });
+        }, [token]);
+    }
 
     function updateQuantity(productId, newQuantity) {
         // Update the quantity in the backend
@@ -150,7 +151,7 @@ export const CartProvider = ({ children }) => {
 
 
     return (
-        <CartContext.Provider value={{ cartCount, addToCart, cart, carts, handleDelete, handleDecrement, handleIncrement, updateQuantity, handleCartItemsDelete }}>
+        <CartContext.Provider value={{ cartCount, addToCart, cart, carts, handleDelete, handleDecrement, handleIncrement, updateQuantity, handleCartItemsDelete, handleCart }}>
             {children}
         </CartContext.Provider>
     );

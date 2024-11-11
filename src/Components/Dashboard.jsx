@@ -90,7 +90,7 @@ function Dashboard() {
                                         boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
                                     },
                                     '@media (max-width:600px)': {
-                                        height: '370px',
+                                        height: '420px',
                                     },
                                 }}
                             >
@@ -175,7 +175,7 @@ function Dashboard() {
                                         boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
                                     },
                                     '@media (max-width:600px)': {
-                                        height: '400px',
+                                        height: '450px',
                                     },
                                 }}
                             >

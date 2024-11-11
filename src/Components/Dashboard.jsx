@@ -176,7 +176,7 @@ function Dashboard() {
                                         boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
                                     },
                                     '@media (max-width:600px)': {
-                                        height: '300px',
+                                        height: '250px',
                                     },
                                 }}
                             >

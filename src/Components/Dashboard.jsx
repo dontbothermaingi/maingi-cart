@@ -79,7 +79,7 @@ function Dashboard() {
                                     borderRadius: '15px',
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    height: '70vh',
+                                    height: '100vh',
                                     alignItems: 'center',
                                     boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
                                     padding: '10px',

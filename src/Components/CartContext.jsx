@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
     };
 
     function handleCart(){
-        useEffect(() => {
+
             fetch('https://shop-maingi-server.onrender.com/cart', {
                 method: 'GET',
                 headers: {
@@ -40,8 +40,11 @@ export const CartProvider = ({ children }) => {
             .catch((error) => {
                 console.error("Error fetching cart:", error);
             });
-        }, [token]);
     }
+
+    useEffect(()=>{
+        handleCart()
+    },[token])
 
     function updateQuantity(productId, newQuantity) {
         // Update the quantity in the backend

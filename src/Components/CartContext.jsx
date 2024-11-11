@@ -43,8 +43,10 @@ export const CartProvider = ({ children }) => {
     }
 
     useEffect(()=>{
+
         handleCart()
-    },[token])
+
+    },[token, handleCart])
 
     function updateQuantity(productId, newQuantity) {
         // Update the quantity in the backend

@@ -1,5 +1,5 @@
 // CartContext.js
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 
 const CartContext = createContext();
 
@@ -17,36 +17,33 @@ export const CartProvider = ({ children }) => {
         setCartCount(prevCount => prevCount + 1);
     };
 
-    function handleCart(){
+    const handleCart = useCallback(() => {
+        fetch('https://shop-maingi-server.onrender.com/cart', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            credentials: "include"
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            setCart(data); // Ensure data is structured correctly
+            setCarts(data);
+        })
+        .catch((error) => {
+            console.error("Error fetching cart:", error);
+        });
+    }, [token]);
 
-            fetch('https://shop-maingi-server.onrender.com/cart', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                },
-                credentials: "include"
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data)
-                setCart(data); // Ensure data is structured correctly
-                setCarts(data)
-            })
-            .catch((error) => {
-                console.error("Error fetching cart:", error);
-            });
-    }
-
-    useEffect(()=>{
-
-        handleCart()
-
-    },[token, handleCart])
+    useEffect(() => {
+        handleCart();
+    }, [token, handleCart]);
 
     function updateQuantity(productId, newQuantity) {
         // Update the quantity in the backend

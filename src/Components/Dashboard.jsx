@@ -164,7 +164,7 @@ function Dashboard() {
                                     borderRadius: '15px',
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    height: '50vh',
+                                    height: '58vh',
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
                                     boxShadow: '0 4px 20px rgba(0,0,0,0.1)',

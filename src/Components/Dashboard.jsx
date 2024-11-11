@@ -79,7 +79,7 @@ function Dashboard() {
                                     borderRadius: '15px',
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    height: '300px',
+                                    height: '70vh',
                                     alignItems: 'center',
                                     boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
                                     padding: '10px',
@@ -90,7 +90,7 @@ function Dashboard() {
                                         boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
                                     },
                                     '@media (max-width:600px)': {
-                                        height: '420px',
+                                        height: '300px',
                                     },
                                 }}
                             >

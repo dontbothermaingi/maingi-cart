@@ -163,7 +163,7 @@ function Dashboard() {
                                     borderRadius: '15px',
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    height: '70vh',
+                                    height: '100vh',
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
                                     boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
@@ -175,7 +175,7 @@ function Dashboard() {
                                         boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
                                     },
                                     '@media (max-width:600px)': {
-                                        height: '450px',
+                                        height: '300px',
                                     },
                                 }}
                             >

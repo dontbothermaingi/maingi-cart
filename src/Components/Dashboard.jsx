@@ -47,6 +47,26 @@ function Dashboard() {
         setCurrentPage(value);
     };
 
+    useEffect(() =>{
+        fetch('https://shop-maingi-server.onrender.com/cart',{
+            method:'POST',
+            headers:{
+                'Authorization':`Bearer ${access_token}`
+            },
+            credentials:'include'
+        })
+        .then(response => {
+            if(!response.ok){
+                console.log('Failed to create Cart')
+            }else{
+                return response.json()
+            }
+        })
+        .then((data) => {
+            console.log(data)
+        })
+    },[access_token])
+
     return (
         <Box margin={'30px'}>
             <TextField

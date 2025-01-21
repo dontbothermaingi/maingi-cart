@@ -147,7 +147,7 @@ function Login ({onLogin}){
                             },
                             mb:'20px'
                           }}
-                        name="first_name"
+                        name="username"
                         color="white"
                     />
 

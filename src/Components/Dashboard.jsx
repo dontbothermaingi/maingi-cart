@@ -80,7 +80,7 @@ function Dashboard() {
             {isMobile || isTablet ? (
                 <Box display={'flex'} flexDirection={'column'}>
                     <Box marginLeft={'20px'}>
-                        <Typography fontWeight={'bold'} fontSize={'25px'}>PRODUCTS</Typography>
+                        <Typography style={{fontFamily:'GT Bold'}} fontSize={'25px'}>PRODUCTS</Typography>
                     </Box>
 
                     <Divider orientation="horizontal" sx={{ m: '20px' }} />
@@ -165,7 +165,7 @@ function Dashboard() {
                 <Box display={'flex'} flexDirection={'column'}>
 
                     <Box marginLeft={'20px'} mt={'20px'}>
-                        <Typography fontWeight={'bold'} fontSize={'25px'}>PRODUCTS</Typography>
+                        <Typography style={{fontFamily:'GT Bold'}} fontSize={'30px'}>PRODUCTS</Typography>
                     </Box>
 
                     <Divider orientation="horizontal" sx={{ m: '20px' }} />

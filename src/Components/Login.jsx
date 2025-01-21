@@ -1,264 +1,230 @@
-import { Button, TextField, useMediaQuery } from '@mui/material';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ShoppingCart } from "@mui/icons-material";
-import { Box,IconButton,Typography,} from "@mui/material";
-import './Login.css';
+import LocalMallOutlined from "@mui/icons-material/LocalMallOutlined";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { Alert, Button, IconButton, InputAdornment, Snackbar, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
-function Login({ onLogin }) {
-    const [loginData, setLoginData] = useState({
-        username: '',
-        password: ''
-    });
+function Login ({onLogin}){
 
-    const [registerData, setRegisterData] = useState({
-        username: '',
-        email: '',
-        phone_number: '',
-        password: '',
-        confirm_password: ''
-    });
+    const [openSnackBar, setOpenSnackBar] = useState(false)
+    const [successMessage, setSuccessMessage] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
+    const navigate = useNavigate()
+    const [formData, setFormData] = useState({
+        username:"",
+        password:"",
+    })
 
-    const [isLogin, setIsLogin] = useState(true);
-    const [showPassword, setShowPassword] = useState(false); // State to track password visibility
-    const navigate = useNavigate();
+    function handleChange(event){
+        const {name,value} = event.target
 
-    const toggleAuthMode = () => {
-        setIsLogin(!isLogin);
-    };
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]:value
+        }))
+    }
 
-    const handleLoginChange = (event) => {
-        const { name, value } = event.target;
-        setLoginData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
+    function handleSubmit(event){
+        event.preventDefault()
 
-    const handleRegisterChange = (e) => {
-        setRegisterData({
-            ...registerData,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    const handleLogin = (event) => {
-        event.preventDefault();
-
-        // Check for correct username and password
-            fetch('https://shop-maingi-server.onrender.com/userLogin', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(loginData),
-                credentials: 'include'
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    return response.json().then(errorMsg => {
-                        throw new Error(errorMsg.error || 'Login failed');
-                    });
-                }
-            })
-            .then(userData => {
-                onLogin(userData); // Call the onLogin callback
-                navigate('/'); // Redirect after login
-            })
-            .catch(error => {
-                console.error('Error occurred during login:', error);
-            });
-        
-    };
-
-    const handleRegisterSubmit = async (e) => {
-        e.preventDefault();
-        
-        try {
-            const response = await fetch('https://shop-maingi-server.onrender.com/userRegister', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'  
-                },
-                body: JSON.stringify(registerData)
-            });
-
-            if (response.ok) {
-                const userData = await response.json();
-                console.log('User registered successfully:', userData);
-                // Redirect to login page after successful registration
-                navigate('/login');
-                setIsLogin(true)
-            } else {
-                const errorMessage = await response.json();
-                console.error('Registration failed:', errorMessage);
-                // Handle registration error
-            }
-        } catch (error) {
-            console.error('Error occurred during registration:', error);
+        if (!formData.username || !formData.password) {
+            setOpenSnackBar(true);
+            setSuccessMessage('Please fill in all fields');
+            return;
         }
-    };
 
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
+        fetch('https://shop-maingi-server.onrender.com/userLogin', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData),
+            credentials: 'include'
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return response.json().then(errorMsg => {
+                    throw new Error(errorMsg.error || 'Login failed');
+                });
+            }
+        })
+        .then(userData => {
+            onLogin(userData); // Call the onLogin callback
+            navigate('/'); // Redirect after login
+            setOpenSnackBar(true)
+            setSuccessMessage('Login Successful')
 
-    const isMobile = useMediaQuery('(max-width: 768px)');
-    const isTablet = useMediaQuery('(min-width: 769px) and (max-width: 1350px)');
+        })
+        .catch((error) => {
+            console.error('Failed to login', error)
+            setOpenSnackBar(true)
+            setSuccessMessage("username/password is incorrect")
+        })
+    }
 
-    return (
+    function handleShowPassword(){
+        setShowPassword(!showPassword)
+    }
 
-        <div>
-            {isMobile || isTablet ? (
+    function handleCloseSnackBar(event,reason){
+        if(reason === 'clickaway') return ;
+        setOpenSnackBar(false)
+    }
 
-                <Box>   
-                    {isLogin ? (
-                        <Box className='mobile'>
+    function handleRegister (){
+        navigate('/register')
+    }
 
-                        <Box display='flex' alignItems='center' mt='20px'>
-                        <IconButton  sx={{ color: 'black' }}>
-                            <ShoppingCart sx={{ fontSize:'50px' }} />
+    function handleHome(){
+      navigate('/')
+    }
+    return ( 
+        <Box 
+            display={'flex'} 
+            flexDirection={'row'} 
+            gap={'30px'} 
+            justifyContent={'space-between'} 
+            sx={{backgroundColor:'#171517'}} 
+            height={'93.42vh'}
+            padding={'2rem'}
+        >
+
+            <Box flex={1}>
+                <img 
+                   src="/1.jpeg"
+                   alt="meditation"
+                   style={{width:'100%', height:'100%', borderRadius:'20px'}}
+                />
+            </Box>
+
+            <Box flex={1}>
+
+                <Box display={'flex'} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
+                        <IconButton sx={{color:'white'}}>
+                            <LocalMallOutlined sx={{fontSize:'33px'}}/>
                         </IconButton>
-                        <Typography fontWeight='bold' fontSize='40px' sx={{ cursor: 'pointer' }}>
-                            MaingiCart
-                        </Typography>
-                        </Box>
-
-                        <Box>
-                            <Typography textAlign='center' fontSize='30px' fontWeight='bold' mb='30px'>Welcome Back!</Typography>
-                            <form onSubmit={handleLogin} className='mobile-form-design'>
-                                <TextField type="text" label="Username" variant='outlined' name='username' value={loginData.username} onChange={handleLoginChange} className='input-field' sx={{mb:"40px"}}/>
-                                <TextField type="password" label="Password" variant='outlined' name='password' value={loginData.password} onChange={handleLoginChange} className='input-field'sx={{mb:"40px"}}/>
-                                <Button variant='contained' color='black' sx={{backgroundColor:'white'}} type="submit">Login</Button>
-                            </form>
-                        </Box>
-
-                        <Box>
-                            <Typography fontSize="16px" sx={{cursor:'pointer'}} mb='20px' onClick={toggleAuthMode}>Don't have an account? Sign Up</Typography>
-                        </Box>
-
-                    </Box>
-                    ) : (
-
-                        <Box className='mobile'>
-
-                        <Box display='flex' alignItems='center' mt='20px'>
-                        <IconButton  sx={{ color: 'black' }}>
-                            <ShoppingCart sx={{ fontSize:'50px' }} />
-                        </IconButton>
-                        <Typography fontWeight='bold' fontSize='40px' sx={{ cursor: 'pointer' }}>
-                            MaingiCart
-                        </Typography>
-                        </Box>
-
-                        <Box>
-                                    <Typography textAlign='center' fontSize='30px' fontWeight='bold' mb='30px'>Create your account</Typography>
-                                    <form onSubmit={handleRegisterSubmit} className='form-design'>
-                                        <TextField type="text" label="Username" variant='outlined' name='username' value={registerData.username} onChange={handleRegisterChange} className='input-field' sx={{mb:"40px"}}/>
-                                        <TextField type="text" label="Email" variant='outlined' name='email' value={registerData.email} onChange={handleRegisterChange} className='input-field' sx={{mb:"40px"}}/>
-                                        <TextField type="text" label="Phone Number" variant='outlined' name='phone_number' value={registerData.phone_number} onChange={handleRegisterChange} className='input-field' sx={{mb:"40px"}}/>
-                                        <TextField type="password" label="Password" variant='outlined' name='password' value={registerData.password} onChange={handleRegisterChange} className='input-field' sx={{mb:"40px"}}/>
-                                        <TextField type="password" label="Confirm Password" variant='outlined' name='confirm_password' value={registerData.confirm_password} onChange={handleRegisterChange} className='input-field' sx={{mb:"40px"}}/>
-                                        <Button variant='contained' color='black' sx={{backgroundColor:'white'}} type="submit">Sign Up</Button>
-                                    </form>
-                        </Box>
-
-                        <Box>
-                                    <Typography fontSize="16px" sx={{cursor:'pointer'}} mb='20px' onClick={toggleAuthMode} >Already have an account? Login</Typography>
-                        </Box>
-
-                    </Box>
-                    )}
-
+                        <Typography style={{fontFamily:'GT Bold', cursor:'pointer', color:'white'}} fontSize={'40px'} onClick={handleHome} >Maingi Cart</Typography>
                 </Box>
-            ):(
-            <div className={`auth-container ${isLogin ? 'login' : 'signup'}`}>
-                <div className={`background ${isLogin ? 'login' : 'signup'}`} />
-                <div className="form-container">
-                    <div className={`form ${isLogin ? 'login-form' : 'signup-form'}`}>
-                        {isLogin ? (
-                            <>
-                            <Box display='flex' justifyContent='space-between' flexDirection='column' alignItems='center' gap='200px'>
 
-                                    <Box display='flex' alignItems='center'>
-                                        <IconButton  sx={{ color: 'black' }}>
-                                            <ShoppingCart sx={{ fontSize:'50px' }} />
-                                        </IconButton>
-                                        <Typography fontWeight='bold' fontSize='40px' sx={{ cursor: 'pointer' }}>
-                                            MaingiCart
-                                        </Typography>
-                                    </Box>
+                <Typography style={{fontFamily:'GT Medium', color:'white'}} fontSize={'50px'} textAlign={'center'} mt={'130px'}>Welcome Back!</Typography>
+                <Typography style={{fontFamily:'GT Regular', color:'white'}} textAlign={'center'} mb={'40px'}>You don't have an account? <span style={{color:'#837BA2', cursor:'pointer'}} onClick={handleRegister}>Register</span></Typography>
 
-                                    <Box>
-                                        <Typography textAlign='center' fontSize='30px' fontWeight='bold' mb='30px'>Welcome Back!</Typography>
-                                        <form onSubmit={handleLogin} className='form-design'>
-                                            <TextField type="text" label="Username" variant='outlined' name='username' value={loginData.username} onChange={handleLoginChange} className='input-field' sx={{mb:"40px"}}/>
-                                            <Box display={'flex'} gap={'10px'} alignItems={'center'}>
-                                                <TextField type={showPassword ? 'text' : 'password'} label="Password" variant='outlined' name='password' value={loginData.password} onChange={handleLoginChange} className='input-field'sx={{mb:"40px"}}/>
-                                                <Button
-                                                    type="button"
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    onClick={togglePasswordVisibility}
-                                                    aria-label={showPassword ? 'Hide password' : 'Show password'}
-                                                >
-                                                    {showPassword ? 'Hide' : 'Show'}
-                                                </Button>
-                                            </Box>
-                                            <Button variant='contained' color='primary' type="submit">Login</Button>
-                                        </form>
-                                    </Box>
+                <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column', width:'500px', justifyContent:'center', margin:'auto'}}>
 
-                                    <Box>
-                                            <Typography fontSize="16px" sx={{cursor:'pointer'}} onClick={toggleAuthMode}>Don't have an account? Sign Up</Typography>
-                                    </Box>
-                            </Box>
+                    <TextField 
+                        value={formData.username}
+                        onChange={handleChange}
+                        type="text"
+                        label="Username"
+                        variant="outlined"
+                        InputProps={{
+                            style: {
+                              color: 'white', // Text color inside the input
+                              backgroundColor:'#3C364C'
+                            },
+                          }}
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: '#3C364A', // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'white', // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: 'white', // Border color when focused
+                              },
+                            },
+                            '& .MuiInputLabel-root': {
+                              color: 'grey', // Label color
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: 'white', // Label color when focused
+                            },
+                            mb:'20px'
+                          }}
+                        name="first_name"
+                        color="white"
+                    />
 
-                            </>
-                        ) : (
-                            <>
+                    <TextField 
+                        value={formData.password}
+                        name="password"
+                        onChange={handleChange}
+                        type={showPassword ? 'text':'password'}
+                        label="Password"
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: '#3C364A', // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'white', // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: 'white', // Border color when focused
+                              },
+                            },
+                            '& .MuiInputLabel-root': {
+                              color: 'grey', // Label color
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: 'white', // Label color when focused
+                            },
+                            mb:'20px'
+                          }}
+                        variant="outlined"
+                        InputProps={{
+                            style: {
+                                color: 'white', // Text color inside the input
+                                backgroundColor:'#3C364C'
+                              },
+                            endAdornment:(
+                                <InputAdornment position="end">
+                                    <IconButton
+                                    onClick={handleShowPassword}
+                                    edge={'end'}
+                                    sx={{color:'grey'}}
+                                    >
+                                        {showPassword ? <VisibilityOff/> : <Visibility/>}
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
+                    />
 
-                            <Box display='flex' justifyContent='space-between' flexDirection='column' alignItems='center' gap='100px' className='desktop'>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        sx={{backgroundColor:"#6D54B5"}}
+                    >
+                        <Typography fontFamily={'GT Regular'} padding={'7px'}>Login</Typography>
+                    </Button>
+                    
+                </form>
+            </Box>
 
-                                <Box>
-                                    <Box display='flex' alignItems='center'>
-                                        <IconButton  sx={{ color: 'black' }}>
-                                            <ShoppingCart sx={{ fontSize:'50px' }} />
-                                        </IconButton>
-                                        <Typography fontWeight='bold' fontSize='40px' sx={{ cursor: 'pointer' }}>
-                                            MaingiCart
-                                        </Typography>
-                                    </Box>
-                                </Box>
+            <Snackbar 
+              open={openSnackBar}
+              onClose={handleCloseSnackBar}
+              autoHideDuration={6000}
+              anchorOrigin={{vertical:'top', horizontal:'center'}}
+            >
+                <Alert
+                onClose={handleCloseSnackBar}
+                  severity={successMessage.startsWith('Failed') ? 'error': 'success'}
+                  sx={{ width: '100%' }}
+                >
+                    {successMessage}
+                </Alert>
+            </Snackbar>
 
-                                <Box>
-                                    <Typography textAlign='center' fontSize='30px' fontWeight='bold' mb='30px'>Create your account</Typography>
-                                    <form onSubmit={handleRegisterSubmit} className='form-design'>
-                                        <TextField type="text" label="Username" variant='outlined' name='username' value={registerData.username} onChange={handleRegisterChange} className='input-field' sx={{mb:"40px"}}/>
-                                        <TextField type="text" label="Email" variant='outlined' name='email' value={registerData.email} onChange={handleRegisterChange} className='input-field' sx={{mb:"40px"}}/>
-                                        <TextField type="text" label="Phone Number" variant='outlined' name='phone_number' value={registerData.phone_number} onChange={handleRegisterChange} className='input-field' sx={{mb:"40px"}}/>
-                                        <TextField type="password" label="Password" variant='outlined' name='password' value={registerData.password} onChange={handleRegisterChange} className='input-field' sx={{mb:"40px"}}/>
-                                        <TextField type="password" label="Confirm Password" variant='outlined' name='confirm_password' value={registerData.confirm_password} onChange={handleRegisterChange} className='input-field' sx={{mb:"40px"}}/>
-                                        <Button variant='contained' color='primary' type="submit">Sign Up</Button>
-                                    </form>
-                                </Box>
-
-                                <Box>
-                                    <Typography fontSize="16px" sx={{cursor:'pointer'}} onClick={toggleAuthMode} >Already have an account? Login</Typography>
-                                </Box>
-
-                            </Box>
-        
-                            </>
-                        )}
-                    </div>
-                </div>
-            </div>
-            )}
-        </div>
-    );
+        </Box>
+     );
 }
-
+ 
 export default Login;

@@ -2,7 +2,6 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
 }
 
 .auth-container {
@@ -13,7 +12,7 @@ body {
 
 .background {
   flex: 1; /* Take half the screen */
-  background-color: orange; /* Default color */
+  background-color: #171517; /* Default color */
   transition: transform 0.6s ease; /* Smooth transition for background */
 }
 
@@ -48,7 +47,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: orange;
+  background-color: #171517;
   height: 100vh;
 }
 

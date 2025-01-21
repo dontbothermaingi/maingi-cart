@@ -1,20 +1,25 @@
-import { Typography } from "@mui/material";
+import LocalMallOutlined from "@mui/icons-material/LocalMallOutlined";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { Alert, Button, IconButton, InputAdornment, Snackbar, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import { useState } from "react";
-import { NavLink, useNavigate} from "react-router-dom";
-// import "./Register.css";
-function Register() {
-    
-    const navigate = useNavigate();
+import { useNavigate } from "react-router";
+
+function Register(){
+
+    const [openSnackbar, setOPenSnackbar] = useState(false)
+    const [successMessage, setSuccessMessage] = useState("")
+    const [showPassowrd, setShowPassword] = useState(false)
     const [error, setError] = useState('');
-
-
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        phone_number: '',
-        password: '',
-        confirm_password: ''
-    });
+    const navigate = useNavigate()
+    const [formData,setFormData] = useState({
+        phone_number:"",
+        username:"",
+        email:"",
+        password:"",
+        confirm_password:"",
+    })
 
     const handleChange = (e) => {
         setFormData({
@@ -25,6 +30,12 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (formData.password !== formData.confirm_password) {
+            setOPenSnackbar(true);
+            setSuccessMessage('Passwords do not match');
+            return;
+        }
         
         try {
             const response = await fetch('https://maingi-shop-server.onrender.com/userRegister', {
@@ -38,6 +49,8 @@ function Register() {
             if (response.ok) {
                 const userData = await response.json();
                 console.log('User registered successfully:', userData);
+                setOPenSnackbar(true)
+                setSuccessMessage("Registration Successfull")
                 // Redirect to login page after successful registration
                 navigate('/login');
             } else {
@@ -49,111 +62,280 @@ function Register() {
         } catch (error) {
             console.error('Error occurred during registration:', error);
             setError(error.message);  // Set the error message to state
+            setOPenSnackbar(true)
+            setSuccessMessage('Failed to Register')
 
         }
     };
 
-    return (
-        <div className='overall-container'>
+    function handleShowPassword(){
+        setShowPassword(!showPassowrd)
+    }
 
-                <div className='container-login'>
-                            <div className='header'>
-                                <Typography
-                                    fontSize='35px'
-                                    fontWeight='bold'
-                                    mb='5px'
-                                    textAlign='center'
-                                >
-                                    MAINGI CART
-                                </Typography>
-                            </div>
+    function handleCloseSnackBar(reason, event){
+        if(reason === 'clickaway') return;
+        setOPenSnackbar(false)
+    }
+
+    function handleLogin(){
+      navigate('/login')
+    }
+
+    function handleHome(){
+      navigate('/')
+    }
+
+    return ( 
+        <Box 
+           display={'flex'} 
+           flexDirection={'row'} 
+           gap={'30px'} 
+           justifyContent={'space-between'} 
+           sx={{backgroundColor:'#171517'}} 
+           height={'93.42vh'}
+           padding={'2rem'}
+        >
+
+            <Box flex={1}>
+                <img 
+                   src="/1.jpeg"
+                   alt="meditation"
+                   style={{width:'100%', height:'100%', borderRadius:'20px'}}
+                />
+            </Box>
+
+            <Box flex={1}>
+
+                <Box display={'flex'} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
+                        <IconButton sx={{color:'white'}}>
+                            <LocalMallOutlined sx={{fontSize:'33px'}}/>
+                        </IconButton>
+                        <Typography style={{fontFamily:'GT Bold', cursor:'pointer', color:'white'}} fontSize={'40px'} onClick={handleHome} >Maingi Cart</Typography>
+                </Box>
+
+                <Typography style={{fontFamily:'GT Medium', color:'white'}} fontSize={'50px'} textAlign={'center'} mt={'130px'}> Create an cccount</Typography>
+                <Typography style={{fontFamily:'GT Regular', color:'white'}} textAlign={'center'} mb={'40px'}>Already have an account? <span style={{color:'#837BA2', cursor:'pointer'}} onClick={handleLogin}>Log in</span></Typography>
+
+                <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column', width:'500px', justifyContent:'center', margin:'auto'}}>
+
+                    <TextField 
+                        value={formData.username}
+                        name="username"
+                        onChange={handleChange}
+                        type="text"
+                        label="Username"
+                        InputProps={{
+                            style: {
+                              color: 'white', // Text color inside the input
+                              backgroundColor:'#3C364C'
+                            },
+                          }}
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: '#3C364A', // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'white', // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: 'white', // Border color when focused
+                              },
+                            },
+                            '& .MuiInputLabel-root': {
+                              color: 'grey', // Label color
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: 'white', // Label color when focused
+                            },
+                            mb:'20px'
+                          }}
+                        variant="outlined"
+                    />
+
+                    <TextField 
+                        value={formData.email}
+                        name="email"
+                        onChange={handleChange}
+                        type="text"
+                        label="Email"
+                        InputProps={{
+                            style: {
+                              color: 'white', // Text color inside the input
+                              backgroundColor:'#3C364C'
+                            },
+                          }}
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: '#3C364A', // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'white', // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: 'white', // Border color when focused
+                              },
+                            },
+                            '& .MuiInputLabel-root': {
+                              color: 'grey', // Label color
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: 'white', // Label color when focused
+                            },
+                            mb:'20px'
+                          }}
+                        variant="outlined"
+                    />
+
+                    <TextField 
+                        value={formData.phone_number}
+                        name="phone_number"
+                        onChange={handleChange}
+                        type="text"
+                        label="Email"
+                        InputProps={{
+                            style: {
+                              color: 'white', // Text color inside the input
+                              backgroundColor:'#3C364C'
+                            },
+                          }}
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: '#3C364A', // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'white', // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: 'white', // Border color when focused
+                              },
+                            },
+                            '& .MuiInputLabel-root': {
+                              color: 'grey', // Label color
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: 'white', // Label color when focused
+                            },
+                            mb:'20px'
+                          }}
+                        variant="outlined"
+                    />
+                
+                    <TextField 
+                        value={formData.password}
+                        name="password"
+                        onChange={handleChange}
+                        type={showPassowrd ? 'text':'password'}
+                        label="Password"
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: '#3C364A', // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'white', // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: 'white', // Border color when focused
+                              },
+                            },
+                            '& .MuiInputLabel-root': {
+                              color: 'grey', // Label color
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: 'white', // Label color when focused
+                            },
+                            mb:'20px'
+                          }}
+                        variant="outlined"
+                        InputProps={{
+                            style: {
+                                color: 'white', // Text color inside the input
+                                backgroundColor:'#3C364C'
+                              },
+                            endAdornment:(
+                                <InputAdornment position="end">
+                                    <IconButton
+                                    onClick={handleShowPassword}
+                                    edge={'end'}
+                                    sx={{color:'grey'}}
+                                    >
+                                        {showPassowrd ? <VisibilityOff/> : <Visibility/>}
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
+                    />
+
+                    <TextField 
+                        value={formData.confirm_password}
+                        name="confirm_password"
+                        onChange={handleChange}
+                        type={showPassowrd ? 'text':'password'}
+                        label="Confirm Passowrd"
+                        InputProps={{
+                            style: {
+                              color: 'white', // Text color inside the input
+                              backgroundColor:'#3C364C'
+                            },
+                          }}
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: '#3C364A', // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'white', // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: 'white', // Border color when focused
+                              },
+                            },
+                            '& .MuiInputLabel-root': {
+                              color: 'grey', // Label color
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: 'white', // Label color when focused
+                            },
+                            mb:'20px'
+                          }}
+                        variant="outlined"
+                    />
+
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        sx={{backgroundColor:"#6D54B5"}}
+                    >
+                        <Typography fontFamily={'GT Regular'} padding={'7px'}>Create account</Typography>
+                    </Button>
                     
-                            <div>
-                                    <form onSubmit={handleSubmit}>
-                                        <div className="bill-input">
-                                            <label>USERNAME</label>
-                                            <input
-                                                type="text"
-                                                name="username"
-                                                placeholder="Username"
-                                                className="bill-inputfield"
-                                                value={formData.username}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
+                </form>
 
-                                        <div className="bill-input">
-                                            <label>EMAIL</label>
-                                            <input
-                                                type="email"
-                                                name="email"
-                                                placeholder="Email"
-                                                className="bill-inputfield"
-                                                value={formData.email}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
+                {error && <div style={{ color: 'red' }}>{error}</div>}
 
-                                        <div className="bill-input">
-                                            <label>PHONE NUMBER</label>
-                                            <input
-                                                type="text"
-                                                name="phone_number"
-                                                placeholder="Phone Number"
-                                                className="bill-inputfield"
-                                                value={formData.phone_number}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
+            </Box>
 
-                                        <div className="bill-input">
-                                            <label>PASSWORD</label>
-                                            <input
-                                                type="password"
-                                                name="password"
-                                                placeholder="Password"
-                                                className="bill-inputfield"
-                                                value={formData.password}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
+            <Snackbar 
+              open={openSnackbar}
+              onClose={handleCloseSnackBar}
+              autoHideDuration={6000}
+              anchorOrigin={{vertical:'top', horizontal:'center'}}
+            >
+                <Alert
+                onClose={handleCloseSnackBar}
+                  severity={successMessage.startsWith('Failed') ? 'error': 'success'}
+                  sx={{ width: '100%' }}
+                >
+                    {successMessage}
+                </Alert>
+            </Snackbar>
 
-                                        <div className="bill-input">
-                                            <label>CONFIRM PASSWORD</label>
-                                            <input
-                                                type="password"
-                                                name="confirm_password"
-                                                placeholder="Confirm Password"
-                                                className="bill-inputfield"
-                                                value={formData.confirm_password}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        {error && <div style={{ color: 'red' }}>{error}</div>}
-                                        
-                                        <button type="submit" className="button-login">REGISTER</button>
-                                    </form>
-                                    <Typography>
-                                        Already have an account?<NavLink to="/login"><u>Login</u></NavLink>
-                                    </Typography>
-                            </div>
-
-                            <div className='footer'>
-                                <Typography
-                                    fontSize='15px'
-                                    mb='5px'
-                                    textAlign='center'
-                                    maxWidth='550px'
-                                >
-                                    Join the millions of investors who trust us to manage their finances. 
-                                    Benefit from our cutting-edge tools, personalized insights, and dedicated support designed to help you make informed decisions and achieve your financial goals.
-                                    {/* Experience seamless integration with your accounts and stay ahead with real-time updates and expert guidance. */}
-                                </Typography>
-                            </div>
-                </div>
-       </div>
-    );
+        </Box>
+     );
 }
-
+ 
 export default Register;
+

@@ -4,6 +4,7 @@ import PersonOutlineOutlined from "@mui/icons-material/PersonOutlineOutlined";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "./CartContext";
+import LocalMallOutlined from "@mui/icons-material/LocalMallOutlined";
 
 function Navbar() {
     const navigate = useNavigate();
@@ -62,7 +63,7 @@ function Navbar() {
 
     const menuItems = (
         <Box display='flex' flexDirection={isMobile ? 'column' : 'row'} alignItems='center' gap={isMobile ? '20px' : '30px'}>
-            <Typography fontSize='19px' onClick={handleOrders} sx={{cursor:'pointer'}}>Orders</Typography>
+            <Typography style={{fontFamily:'GT Bold'}} fontSize='26px' onClick={handleOrders} sx={{cursor:'pointer'}}>Orders</Typography>
         </Box>
     );
 
@@ -74,9 +75,9 @@ function Navbar() {
                     <Box display='flex' justifyContent='space-between' alignItems='center' margin='30px'>
                         <Box display='flex' alignItems='center'>
                             <IconButton onClick={handleDashboard} sx={{ color: 'black' }}>
-                                <ShoppingCart sx={{ fontSize: isMobile ? '40px' : '50px' }} />
+                                <LocalMallOutlined sx={{ fontSize: isMobile ? '40px' : '50px' }} />
                             </IconButton>
-                            <Typography fontSize={isMobile ? '25px' : '30px'} fontWeight='bold' onClick={handleDashboard} sx={{ cursor: 'pointer' }}>
+                            <Typography fontSize={isMobile ? '25px' : '30px'} style={{fontFamily:'GT Bold'}} onClick={handleDashboard} sx={{ cursor: 'pointer' }}>
                                 MaingiCart
                             </Typography>
                         </Box>
@@ -105,9 +106,9 @@ function Navbar() {
                 <Box display='flex' alignItems='center' margin='30px' justifyContent='space-between'>
                         <Box display='flex' alignItems='center'>
                             <IconButton onClick={handleDashboard} sx={{ color: 'black' }}>
-                                <ShoppingCart sx={{ fontSize: isMobile ? '40px' : '50px' }} />
+                                <LocalMallOutlined sx={{ fontSize: isMobile ? '40px' : '50px' }} />
                             </IconButton>
-                            <Typography fontSize={isMobile ? '25px' : '30px'} fontWeight='bold' onClick={handleDashboard} sx={{ cursor: 'pointer' }}>
+                            <Typography fontSize={isMobile ? '25px' : '40px'} fontWeight='bold' style={{fontFamily:'GT Bold'}} onClick={handleDashboard} sx={{ cursor: 'pointer' }}>
                                 MaingiCart
                             </Typography>
                         </Box>
@@ -125,8 +126,8 @@ function Navbar() {
                                     <Typography>Account</Typography>
                                 </Box>
                             ) : (
-                                <Button variant="contained" color="secondary" onClick={handleLogin}>
-                                    Sign In
+                                <Button variant="contained" style={{backgroundColor:'black'}} onClick={handleLogin}>
+                                    <Typography style={{fontFamily:'GT Medium', padding:'1px'}}>Sign In</Typography>
                                 </Button>
                             )}
                         </Box>
@@ -134,10 +135,10 @@ function Navbar() {
                         <Box display='flex' alignItems='center'>
                             <IconButton onClick={handleCart} sx={{ color: 'black' }}>
                                 <Badge badgeContent={carts.cart_quantity} variant="contained" color="primary">
-                                    <ShoppingCart sx={{ fontWeight: 'bold' }} />
+                                    <ShoppingCart sx={{ fontWeight: 'bold', fontSize:"33px" }} />
                                 </Badge>
                             </IconButton>
-                            <Typography>Cart</Typography>
+                            <Typography fontSize={'26px'} style={{fontFamily:'GT Bold'}}>Cart</Typography>
                         </Box>
             
                 </Box>

@@ -5,6 +5,3 @@
 
 [build.environment]
   NODE_VERSION = "16.14.0"
-
-[build]
-  functions = "functions"

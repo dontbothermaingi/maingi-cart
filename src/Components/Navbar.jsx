@@ -85,15 +85,15 @@ function Navbar() {
 
                         <Box>
                             {isAuthenticated ? (
-                                <Box display='flex' alignItems='center' gap='10px'>
+                                <Box display='flex' alignItems='center'>
                                     <IconButton onClick={handleAddress}>
-                                        <PersonOutlineOutlined sx={{ fontWeight: 'bold' }} />
+                                        <PersonOutlineOutlined sx={{ fontWeight: 'bold', fontSize:'30px', color:'black' }} />
                                     </IconButton>
-                                    <Typography>Account</Typography>
+                                <Typography  style={{fontFamily:"GT Regular", fontSize:'20px', cursor:"pointer"}} onClick={handleAddress}>Account</Typography>
                                 </Box>
                             ) : (
-                                <Button variant="contained" color="secondary" onClick={handleLogin}>
-                                    Sign In
+                                <Button variant="contained" style={{backgroundColor:'black'}} onClick={handleLogin}>
+                                    <Typography style={{fontFamily:'GT Medium', padding:'1px'}}>Sign In</Typography>
                                 </Button>
                             )}
                         </Box>
@@ -121,9 +121,9 @@ function Navbar() {
                             {isAuthenticated ? (
                                 <Box display='flex' alignItems='center' gap='10px'>
                                     <IconButton onClick={handleAddress}> 
-                                        <PersonOutlineOutlined sx={{ fontWeight: 'bold' }} />
+                                        <PersonOutlineOutlined  sx={{fontSize:'30px', color:'black' }} />
                                     </IconButton>
-                                    <Typography>Account</Typography>
+                                    <Typography style={{fontFamily:"GT Bold", fontSize:'26px', cursor:"pointer"}} onClick={handleAddress}>Account</Typography>
                                 </Box>
                             ) : (
                                 <Button variant="contained" style={{backgroundColor:'black'}} onClick={handleLogin}>

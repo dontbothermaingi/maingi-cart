@@ -325,10 +325,10 @@ function ProductDisplay() {
                 <Box display={"flex"} flexDirection={"column"} maxWidth={"400px"} flex={'1'}>
                     {/* Product Title and Description */}
                     <Box mb={"30px"}>
-                    <Typography fontSize={"35px"} fontWeight={"bold"}>
+                    <Typography fontSize={"35px"} fontFamily={"GT Ultrabold"} fontWeight={"bold"}>
                         {product.product_name}
                     </Typography>
-                    <Typography color={"#555"}>
+                    <Typography color={"#555"} fontFamily={"GT Regular"}>
                         {product.product_description}      
                     </Typography>
                     </Box>
@@ -336,7 +336,7 @@ function ProductDisplay() {
                     <Divider orientation="horizontal" sx={{ mb: "30px" }} />
 
                     {/* Price Section */}
-                    <Typography fontSize={"30px"} fontWeight={"bold"} color={"#d32f2f"} mb={"30px"}>
+                    <Typography fontSize={"30px"} fontFamily={'GT Bold'} color={"#d32f2f"} mb={"30px"}>
                         {new Intl.NumberFormat('en-KE', {style:'currency', currency:'KES'}).format(product.product_price)}
                     </Typography>
 
@@ -345,7 +345,7 @@ function ProductDisplay() {
                     {/* Quantity Selector & Buttons */}
 
                     {/* Quantity Section */}
-                    <Typography fontSize={"20px"} fontWeight={"bold"} mb={"30px"}>
+                    <Typography fontSize={"20px"} fontFamily={'GT Bold'} mb={"30px"}>
                         Only {product.product_quantity} left in stock
                     </Typography>
                     
@@ -431,7 +431,7 @@ function ProductDisplay() {
 
                 {/* Key Features Section */}
                 <Box m='40px' border={'1px solid grey'}>
-                    <Typography variant="h5" fontWeight="bold" mb="15px" ml={'15px'} mt={'15px'}>
+                    <Typography fontSize={'28px'} fontFamily={"GT Bold"} mb="15px" ml={'15px'} mt={'15px'}>
                         Key Features
                     </Typography>
 
@@ -439,7 +439,7 @@ function ProductDisplay() {
 
                         {product.key_features.map((item, index) => (
                         <Box key={index} m={'20px'}>
-                            <Typography>{item.description}</Typography>
+                            <Typography fontFamily={"GT Regular"} fontSize={'21px'}>{item.description}</Typography>
                         </Box>
                         ))}
                 </Box>
@@ -449,8 +449,8 @@ function ProductDisplay() {
 
 
                     {/* Specifications Section */}
-                    <Typography  variant="h5" fontWeight="bold" mb="15px" ml={'15px'} mt={'15px'}>
-                    Specifications
+                    <Typography  fontSize={'28px'} fontFamily={"GT Bold"} mb="15px" ml={'15px'} mt={'15px'}>
+                        Specifications
                     </Typography>
 
                     <Divider orientation="horizontal"/>
@@ -459,7 +459,7 @@ function ProductDisplay() {
 
                         {product.specifications.map((item, index) => (
                             <Box key={index} m={'20px'}>
-                                <Typography>{item.header}: {item.content}</Typography>
+                                <Typography fontFamily={"GT Regular"} fontSize={'21px'}>{item.header}: {item.content}</Typography>
                             </Box>
                         ))}
 

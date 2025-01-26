@@ -203,19 +203,19 @@ function Dashboard() {
                                 <CardMedia
                                     component="img"
                                     sx={{ borderRadius: '12px', objectFit: 'cover', width: '70%' }}
-                                    image={`https://shop-maingi-server.onrender.com${item.product_image}`}
+                                    image={`https://shop-maingi-server.onrender.com/${item.product_image}`}
                                     alt={item.product_name}
                                     onClick={() => handleProductDisplay(item.id)}
                                 />
 
                                 <CardContent sx={{ textAlign: 'center', padding: '10px' }}>
-                                    <Typography variant="h6" fontWeight="bold" gutterBottom>
+                                    <Typography fontSize={"25px"} fontFamily={"GT Bold"} gutterBottom>
                                         {item.product_name}
                                     </Typography>
-                                    <Typography variant="body2" color="textSecondary" paragraph>
+                                    <Typography fontSize={"20px"} fontFamily={"GT Regular"} color="textSecondary" paragraph>
                                         {item.product_description}
                                     </Typography>
-                                    <Typography variant="h6" fontWeight="bold" color="primary">
+                                    <Typography variant="h6" fontFamily={"GT Medium"} color="primary">
                                         {new Intl.NumberFormat('en-KE',{style:'currency', currency:'KES'}).format(item.product_price)}
                                     </Typography>
                                 </CardContent>
@@ -232,7 +232,7 @@ function Dashboard() {
                                             textTransform: 'none',
                                         }}
                                     >
-                                        View Item
+                                        <Typography fontFamily={"GT Bold"}>View Item</Typography>
                                     </Button>
                                 </CardActions>
                             </Card>

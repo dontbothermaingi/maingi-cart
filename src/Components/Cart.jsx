@@ -37,7 +37,7 @@ function Cart() {
                             height={'77vh'} 
                             overflow={'auto'}
                         >
-                            <Typography fontSize={'25px'} fontWeight={'bold'} ml={'20px'} mt={'20px'}>Cart</Typography>
+                            <Typography fontFamily={"GT Ultrabold"} fontSize={'25px'} fontWeight={'bold'} ml={'20px'} mt={'20px'}>Cart</Typography>
     
                             <Divider orientation="horizontal"/>
     
@@ -78,13 +78,13 @@ function Cart() {
                                                 />
     
                                                 <CardContent sx={{ textAlign: 'center', padding: '10px', display:'flex', flexDirection:'column' }}>
-                                                    <Typography variant="h8" fontWeight="bold" gutterBottom>
+                                                    <Typography variant="h8" fontFamily={"GT Bold"} gutterBottom>
                                                         {item.product_name}
                                                     </Typography>
-                                                    <Typography >
+                                                    <Typography  fontFamily={"GT Medium"}>
                                                         {new Intl.NumberFormat('en-KE', {style:'currency', currency:'KES'}).format(item.product_price)}
                                                     </Typography>
-                                                    <Typography  color="red">
+                                                    <Typography fontFamily={"GT Regular"} color="red">
                                                         Only {item.product_quantity} left in stock.
                                                     </Typography>
                                                     
@@ -173,7 +173,7 @@ function Cart() {
                             margin={'30px'} 
                             overflow={'auto'}
                         >
-                            <Typography fontSize={'25px'} fontWeight={'bold'} ml={'20px'} mt={'20px'}>CART SUMMARY</Typography>
+                            <Typography fontFamily={"GT Ultrabold"} fontSize={'25px'} fontWeight={'bold'} ml={'20px'} mt={'20px'}>CART SUMMARY</Typography>
     
                             <Divider orientation="horizontal"/>
     
@@ -199,7 +199,7 @@ function Cart() {
                             height={'77vh'} 
                             overflow={'auto'}
                         >
-                            <Typography fontSize={'25px'} fontWeight={'bold'} ml={'20px'} mt={'20px'}>Cart</Typography>
+                            <Typography fontFamily={"GT Ultrabold"} fontSize={'25px'} fontWeight={'bold'} ml={'20px'} mt={'20px'}>Cart</Typography>
     
                             <Divider orientation="horizontal"/>
     
@@ -242,13 +242,13 @@ function Cart() {
     
                                             <Box>
                                                 <CardContent sx={{ textAlign: 'center', padding: '10px', }}>
-                                                    <Typography variant="h6" fontWeight="bold" gutterBottom textAlign={'left'}>
+                                                    <Typography  variant="h6" fontFamily={"GT Bold"} fontWeight="bold" gutterBottom textAlign={'left'}>
                                                         {item.product_name}
                                                     </Typography>
-                                                    <Typography textAlign={'left'}>
+                                                    <Typography textAlign={'left'} fontFamily={"GT Medium"}>
                                                         {new Intl.NumberFormat('en-KE', {style:'currency', currency:'KES'}).format(item.product_price)}
                                                     </Typography>
-                                                    <Typography textAlign={'left'} color="red">
+                                                    <Typography textAlign={'left'} color="red" fontFamily={"GT Regular"}>
                                                         Only {item.product_quantity} left in stock.
                                                     </Typography>
                                                     
@@ -346,13 +346,13 @@ function Cart() {
                             overflow={'auto'}
                             width={'1050px'}
                         >
-                            <Typography fontSize={'25px'} fontWeight={'bold'} ml={'20px'} mt={'20px'}>CART SUMMARY</Typography>
+                            <Typography fontFamily={"GT Ultrabold"} fontSize={'25px'} fontWeight={'bold'} ml={'20px'} mt={'20px'}>CART SUMMARY</Typography>
     
                             <Divider orientation="horizontal"/>
     
-                            <Typography fontSize={'20px'} ml={'20px'} mt={'20px'}>Subtotal: {new Intl.NumberFormat('en-KE',{currency:'KES', style:'currency'}).format(cart.cart_amount)}</Typography>
+                            <Typography fontFamily={"GT Medium"} fontSize={'20px'} ml={'20px'} mt={'20px'}>Subtotal: {new Intl.NumberFormat('en-KE',{currency:'KES', style:'currency'}).format(cart.cart_amount)}</Typography>
 
-                            <Button variant="contained" color="secondary" onClick={handleOrder}>Checkout</Button>
+                            <Button variant="contained" color="secondary" onClick={handleOrder}><Typography fontFamily={"GT Bold"}>Checkout</Typography></Button>
                         </Box>
                         </Box>
                     )}

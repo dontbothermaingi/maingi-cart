@@ -1,4 +1,5 @@
 import { Box, Button, Card, CardContent, CardMedia, Divider, Typography } from "@mui/material";
+import { CalendarIcon } from "@mui/x-date-pickers-pro";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -55,7 +56,7 @@ function DisplayOrder() {
         <Box>
                 <Box>
                 <Box ml={'30px'}>
-                    <Typography fontSize={'25px'} fontWeight={'bold'}>Orders</Typography>
+                    <Typography fontFamily={"GT Ultrabold"} fontSize={'25px'} fontWeight={'bold'}>Orders</Typography>
                 </Box>
 
                 <Divider orientation="horizontal" sx={{ marginLeft: '30px', marginRight: '30px', marginBottom: '30px' }} />
@@ -100,10 +101,11 @@ function DisplayOrder() {
                                 {/* Upper Part */}
                                 <Box display={'flex'} justifyContent={{md:'space-between'}} flexDirection={{xs:'column'}} margin={'20px'}>
                                     <Box display={'flex'} flexDirection={{xs:'row', md:'medium'}}>
-                                        <Typography>Order ID</Typography>
-                                        <Typography>#{order.id}</Typography>
+                                        <Typography fontFamily={"GT Bold"}>Order ID</Typography>
+                                        <Typography fontFamily={"GT Bold"}>#{order.id}</Typography>
                                     </Box>
-                                    <Box>
+                                    <Box display={'flex'} flexDirection={"row"} alignItems={"center"}>
+                                        < CalendarIcon />
                                         <Typography>{order.order_date}</Typography>
                                     </Box>
                                 </Box>
@@ -118,7 +120,7 @@ function DisplayOrder() {
                                     gap="20px"
                                     margin="0 10px"
                                     overflow={'auto'}
-                                    maxHeight="400px" // Adjust max height and enable scrolling
+                                    maxHeight="200px" // Adjust max height and enable scrolling
                                     sx={{ overflowY: 'auto' }}
                                 >
                                     {order.products && order.products.map(product => (
@@ -175,7 +177,7 @@ function DisplayOrder() {
                                         <Typography color="grey">({order.order_quantity || 0} items)</Typography>
                                     </Box>
                                     <Box>
-                                        <Button variant="contained" color="secondary" onClick={() => handleOrder(order.id)}>Details</Button>
+                                        <Button variant="contained" color="secondary" onClick={() => handleOrder(order.id)}><Typography fontFamily={"GT Bold"}>Details</Typography></Button>
                                     </Box>
                                 </Box>
                                 

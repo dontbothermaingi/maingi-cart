@@ -10,13 +10,13 @@ function Homepage (){
     }
     return ( 
         <Box display={'flex'} flexDirection={"column"}>
-            <Box margin={"auto"}>
-                <Typography fontFamily={"GT Bold"} textAlign={"center"} fontSize={'30px'}>Find what you are looking for.</Typography>
+            <Box marginTop={"190px"}>
+                <Typography fontFamily={"GT Ultrabold"} textAlign={"center"} fontSize={'90px'}>Find what you are looking for.</Typography>
                 <Typography fontFamily={"GT Regular"} textAlign={"center"} fontSize={'20px'}>We offer a wide range of products</Typography>
             </Box>
 
-            <Box display={'flex'} justifyContent={'flex-end'}>
-                <Button variant="contained" style={{backgroundColor:'black'}} onClick={handleDashboard}><Typography fontFamily={"GT Bold"}>Shop</Typography></Button>
+            <Box display={'flex'} justifyContent={'flex-end'} padding={'50px'} marginTop={'270px'}>
+                <Button variant="contained" style={{backgroundColor:'black'}} onClick={handleDashboard}><Typography fontFamily={"GT Bold"} fontSize={'25px'} padding={'3px'}>Shop</Typography></Button>
             </Box>
            
         </Box>

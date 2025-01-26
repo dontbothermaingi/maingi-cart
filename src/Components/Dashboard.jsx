@@ -212,7 +212,7 @@ function Dashboard() {
                                     <Typography fontSize={"25px"} fontFamily={"GT Bold"} gutterBottom>
                                         {item.product_name}
                                     </Typography>
-                                    <Typography fontSize={"20px"} fontFamily={"GT Regular"} color="textSecondary" paragraph>
+                                    <Typography fontFamily={"GT Regular"} color="textSecondary" paragraph>
                                         {item.product_description}
                                     </Typography>
                                     <Typography variant="h6" fontFamily={"GT Medium"} color="primary">

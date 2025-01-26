@@ -56,7 +56,7 @@ function DisplayOrder() {
         <Box>
                 <Box>
                 <Box ml={'30px'}>
-                    <Typography fontFamily={"GT Ultrabold"} fontSize={'25px'} fontWeight={'bold'}>Orders</Typography>
+                    <Typography fontFamily={"GT Bold"} fontSize={'32px'} fontWeight={'bold'}>Orders</Typography>
                 </Box>
 
                 <Divider orientation="horizontal" sx={{ marginLeft: '30px', marginRight: '30px', marginBottom: '30px' }} />
@@ -101,10 +101,10 @@ function DisplayOrder() {
                                 {/* Upper Part */}
                                 <Box display={'flex'} justifyContent={{md:'space-between'}} flexDirection={{xs:'column'}} margin={'20px'}>
                                     <Box display={'flex'} flexDirection={{xs:'row', md:'medium'}}>
-                                        <Typography fontFamily={"GT Bold"}>Order ID</Typography>
-                                        <Typography fontFamily={"GT Bold"}>#{order.id}</Typography>
+                                        <Typography fontFamily={"GT Bold"} fontSize={'22px'}>Order ID</Typography>
+                                        <Typography fontFamily={"GT Bold"} fontSize={'22px'}>#{order.id}</Typography>
                                     </Box>
-                                    <Box display={'flex'} flexDirection={"row"} alignItems={"center"}>
+                                    <Box display={'flex'} flexDirection={"row"} alignItems={"center"} gap={'7px'}>
                                         < CalendarIcon />
                                         <Typography>{order.order_date}</Typography>
                                     </Box>
@@ -120,7 +120,7 @@ function DisplayOrder() {
                                     gap="20px"
                                     margin="0 10px"
                                     overflow={'auto'}
-                                    maxHeight="200px" // Adjust max height and enable scrolling
+                                    maxHeight="100px" // Adjust max height and enable scrolling
                                     sx={{ overflowY: 'auto' }}
                                 >
                                     {order.products && order.products.map(product => (
@@ -173,7 +173,7 @@ function DisplayOrder() {
                                 {/* Bottom Part */}
                                 <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} marginLeft={'20px'} marginRight={'20px'}>
                                     <Box display={'flex'} flexDirection={{xs:'column', md:'row'}} gap={'5px'}>
-                                        <Typography>{new Intl.NumberFormat('en-KE',{currency:'KES', style:'currency'}).format(order.order_amount || 0)}</Typography>
+                                        <Typography fontFamily={'GT Medium'}>{new Intl.NumberFormat('en-KE',{currency:'KES', style:'currency'}).format(order.order_amount || 0)}</Typography>
                                         <Typography color="grey">({order.order_quantity || 0} items)</Typography>
                                     </Box>
                                     <Box>

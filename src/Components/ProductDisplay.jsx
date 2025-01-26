@@ -325,7 +325,7 @@ function ProductDisplay() {
                 <Box display={"flex"} flexDirection={"column"} maxWidth={"400px"} flex={'1'}>
                     {/* Product Title and Description */}
                     <Box mb={"30px"}>
-                    <Typography fontSize={"35px"} fontFamily={"GT Ultrabold"} fontWeight={"bold"}>
+                    <Typography fontSize={"35px"} fontFamily={"GT Bold"} fontWeight={"bold"}>
                         {product.product_name}
                     </Typography>
                     <Typography color={"#555"} fontFamily={"GT Regular"}>

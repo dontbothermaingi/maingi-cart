@@ -21,6 +21,7 @@ import DisplayOrder from './Components/DisplayOrder';
 import FullViewOrder from './Components/FullViewOrder';
 import EditProduct from './Components/EditProduct';
 import DisplayProducts from './Components/DisplayProducts';
+import Homepage from './Components/Homepage';
 
 
 function App() {
@@ -76,7 +77,8 @@ function App() {
               <Route path='/register' element={<Register />} />
               <Route element={<Relative/>}>
                   <Route path='/cart-context' element={<ShoppingCart />} />
-                  <Route path='/' element={<Dashboard />} />
+                  <Route path='/' element={<Homepage />} />
+                  <Route path='/dashboard' element={<Dashboard />} />
                   <Route path='/useraccount' element={<UserAccount onLogout={handleLogOut} />} />
                   <Route path='/customeraddress' element={<CustomerAddress />} />
                   <Route path='/accountinfo' element={<AccountInfo />} />

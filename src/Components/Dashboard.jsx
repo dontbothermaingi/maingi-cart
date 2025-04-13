@@ -1,5 +1,5 @@
 import { Box, Button, Divider, Typography, useMediaQuery, TextField, Pagination } from "@mui/material";
-import { Card, CardMedia, CardContent, CardActions } from '@mui/material';
+import { Card, CardContent, CardActions } from '@mui/material';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -115,13 +115,18 @@ function Dashboard() {
                                     },
                                 }}
                             >
-                                <CardMedia
-                                    component="img"
-                                    sx={{ borderRadius: '12px', objectFit: 'cover', width: '70%' }}
-                                    image={`https://shop-maingi-server.onrender.com${item.product_image}`}
-                                    alt={item.product_name}
+                                 <Box
+                                    sx={{
+                                        backgroundImage: `url(https://shop-maingi-server.onrender.com/${item.product_image})`,
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                        borderRadius: '12px',
+                                        width: '60%',
+                                        height: '150px', // or dynamic
+                                        cursor: 'pointer',
+                                    }}
                                     onClick={() => handleProductDisplay(item.id)}
-                                />
+                                />   
 
                                 <CardContent sx={{ textAlign: 'center', padding: '10px', display: 'flex', flexDirection: 'column' }}>
                                     <Typography variant="h8" fontWeight="bold" gutterBottom>
@@ -184,7 +189,7 @@ function Dashboard() {
                                     borderRadius: '15px',
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    height: '58vh',
+                                    // height: '58vh',
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
                                     boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
@@ -200,13 +205,20 @@ function Dashboard() {
                                     },
                                 }}
                             >
-                                <CardMedia
-                                    component="img"
-                                    sx={{ borderRadius: '12px', objectFit: 'cover', width: '70%' }}
-                                    image={`https://shop-maingi-server.onrender.com/${item.product_image}`}
-                                    alt={item.product_name}
+                                <Box
+                                    sx={{
+                                        backgroundImage: `url(https://shop-maingi-server.onrender.com/${item.product_image})`,
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                        borderRadius: '12px',
+                                        width: '62%',
+                                        height: '250px', // or dynamic
+                                        cursor: 'pointer',
+                                    }}
                                     onClick={() => handleProductDisplay(item.id)}
-                                />
+                                />          
+
+                                
 
                                 <CardContent sx={{ textAlign: 'center', padding: '10px' }}>
                                     <Typography fontSize={"25px"} fontFamily={"GT Bold"} gutterBottom>

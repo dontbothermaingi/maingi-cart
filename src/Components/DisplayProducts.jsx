@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ArrowBack from "@mui/icons-material/ArrowBack";
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider,IconButton,Pagination, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, Divider,IconButton,Pagination, Typography, useMediaQuery } from "@mui/material";
 
 
 function DisplayProducts (){
@@ -93,13 +93,18 @@ function DisplayProducts (){
                                         },
                                     }}
                                 >
-                                    <CardMedia
-                                        component="img"
-                                        sx={{ borderRadius: '12px', height:'100%', width: '70%' }}
-                                        image={`https://shop-maingi-server.onrender.com${item.product_image}`}
-                                        alt={item.product_name}
+                                     <Box
+                                        sx={{
+                                            backgroundImage: `url(https://shop-maingi-server.onrender.com/${item.product_image})`,
+                                            backgroundSize: 'cover',
+                                            backgroundPosition: 'center',
+                                            borderRadius: '12px',
+                                            width: '30%',
+                                            height: '250px', // or dynamic
+                                            cursor: 'pointer',
+                                        }}
                                         onClick={() => handleProductDisplay(item.id)}
-                                    />
+                                    />   
 
                                     <CardContent sx={{ textAlign: 'center', padding: '10px', display: 'flex', flexDirection: 'column' }}>
                                         <Typography variant="h8" fontWeight="bold" gutterBottom>
@@ -179,13 +184,18 @@ function DisplayProducts (){
                                         },
                                     }}
                                 >
-                                    <CardMedia
-                                        component="img"
-                                        sx={{ borderRadius: '12px', height:"100%", width: '70%' }}
-                                        image={`https://shop-maingi-server.onrender.com${item.product_image}`}
-                                        alt={item.product_name}
-                                        onClick={() => handleProductEdit(item.id)}
-                                    />
+                                     <Box
+                                        sx={{
+                                            backgroundImage: `url(https://shop-maingi-server.onrender.com/${item.product_image})`,
+                                            backgroundSize: 'cover',
+                                            backgroundPosition: 'center',
+                                            borderRadius: '12px',
+                                            width: '40%',
+                                            height: '150px', // or dynamic
+                                            cursor: 'pointer',
+                                        }}
+                                        onClick={() => handleProductDisplay(item.id)}
+                                    />   
 
                                     <CardContent sx={{ textAlign: 'center', padding: '10px' }}>
                                         <Typography variant="h6" fontWeight="bold" gutterBottom>

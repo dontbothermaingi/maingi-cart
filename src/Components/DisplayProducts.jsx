@@ -95,7 +95,7 @@ function DisplayProducts (){
                                 >
                                     <CardMedia
                                         component="img"
-                                        sx={{ borderRadius: '12px', objectFit: 'cover', width: '70%' }}
+                                        sx={{ borderRadius: '12px', height:'100%', width: '70%' }}
                                         image={`https://shop-maingi-server.onrender.com${item.product_image}`}
                                         alt={item.product_name}
                                         onClick={() => handleProductDisplay(item.id)}
@@ -181,7 +181,7 @@ function DisplayProducts (){
                                 >
                                     <CardMedia
                                         component="img"
-                                        sx={{ borderRadius: '12px', objectFit: 'cover', width: '70%' }}
+                                        sx={{ borderRadius: '12px', height:"100%", width: '70%' }}
                                         image={`https://shop-maingi-server.onrender.com${item.product_image}`}
                                         alt={item.product_name}
                                         onClick={() => handleProductEdit(item.id)}

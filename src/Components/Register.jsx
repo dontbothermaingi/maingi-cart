@@ -1,8 +1,8 @@
 import LocalMallOutlined from "@mui/icons-material/LocalMallOutlined";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { Alert, Button, IconButton, InputAdornment, Snackbar, TextField, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Alert, Button, IconButton, Snackbar, TextField, Typography } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/system";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -11,7 +11,6 @@ function Register(){
     const [openSnackbar, setOPenSnackbar] = useState(false)
     const [successMessage, setSuccessMessage] = useState("")
     const [showPassowrd, setShowPassword] = useState(false)
-    const [error, setError] = useState('');
     const navigate = useNavigate()
     const [formData,setFormData] = useState({
         phone_number:"",
@@ -61,7 +60,6 @@ function Register(){
             }
         } catch (error) {
             console.error('Error occurred during registration:', error);
-            setError(error.message);  // Set the error message to state
             setOPenSnackbar(true)
             setSuccessMessage('Failed to Register')
 
@@ -81,242 +79,244 @@ function Register(){
       navigate('/login')
     }
 
-    function handleHome(){
-      navigate('/')
-    }
+    const isMobile = useMediaQuery('(max-width: 768px)');
+    
 
     return ( 
-        <Box 
-           display={'flex'} 
-           flexDirection={'row'} 
-           gap={'30px'} 
-           justifyContent={'space-between'} 
-           sx={{backgroundColor:'#171517'}} 
-           height={'93.42vh'}
-           padding={'2rem'}
-        >
-
-            <Box flex={1}>
-                <img 
-                   src="/1.jpeg"
-                   alt="meditation"
-                   style={{width:'100%', height:'100%', borderRadius:'20px'}}
-                />
-            </Box>
-
-            <Box flex={1}>
-
-                <Box display={'flex'} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
-                        <IconButton sx={{color:'white'}}>
-                            <LocalMallOutlined sx={{fontSize:'33px'}}/>
+        <Box>
+            <Box>
+              {isMobile ? (
+                <Box display="flex" flexDirection="column" justifyContent="space-between" p={4} sx={{margin:'auto', height:'700px',}}>
+                    {/* Header */}
+                    <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>
+                        
+                        <Typography
+                            fontSize="35px"
+                            fontWeight="bold"
+                            textAlign="center"
+                            color="#fbc02d"
+                            fontFamily={"GT Bold"}
+                        >
+                            MAINGI SHOP
+                        </Typography>
+                        <IconButton>
+                          <LocalMallOutlined style={{color:'fbc02d', fontSize:'40px'}}/>
                         </IconButton>
-                        <Typography style={{fontFamily:'GT Bold', cursor:'pointer', color:'white'}} fontSize={'40px'} onClick={handleHome} >Maingi Cart</Typography>
+                    </Box>
+
+                    {/* Login Form */}
+                    <Box display="flex" flexDirection="column" alignItems="center">
+                        <Typography fontFamily={"GT Regular"} fontSize="35px" fontWeight="bold" mb="5px" textAlign="center">
+                            Create Account
+                        </Typography>
+                        
+                        <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
+                                <TextField
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    value={formData.username}
+                                    onChange={handleChange}
+                                    aria-label="Username"
+                                    variant="outlined"
+                                    label="Username"
+                                    sx={{ mb: '20px' }}
+                                    fullWidth
+                                />
+
+                                <TextField 
+                                    value={formData.email}
+                                    name="email"
+                                    onChange={handleChange}
+                                    type="text"
+                                    label="Email"
+                                    variant="outlined"
+                                    sx={{mb:'20px'}}
+                                />
+
+                                <TextField 
+                                    value={formData.phone_number}
+                                    name="phone_number"
+                                    onChange={handleChange}
+                                    type="text"
+                                    label="Phone Number"
+                                    variant="outlined"
+                                    sx={{mb:'20px'}}
+                                />
+
+
+                                <TextField
+                                    type={showPassowrd ? 'text' : 'password'}
+                                    id="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    variant="outlined"
+                                    label="Password"
+                                    sx={{mb:'20px', flex: 1 }}
+                                    InputProps={{
+                                        endAdornment: (
+                                          <IconButton onClick={handleShowPassword}>
+                                            {showPassowrd ? <VisibilityOff /> : <Visibility />}
+                                          </IconButton>
+                                        ),
+                                    }}
+                                />
+
+
+                                <TextField
+                                    type={showPassowrd ? 'text' : 'password'}
+                                    id="confirm_password"
+                                    name="confirm_password"
+                                    value={formData.confirm_password}
+                                    onChange={handleChange}
+                                    variant="outlined"
+                                    label="Confirm Password"
+                                    sx={{ flex: 1 }}
+                                    InputProps={{
+                                        endAdornment: (
+                                          <IconButton onClick={handleShowPassword}>
+                                            {showPassowrd ? <VisibilityOff /> : <Visibility />}
+                                          </IconButton>
+                                        ),
+                                    }}
+                                />
+
+                                <Typography fontFamily={"GT Regular"} onClick={handleLogin} sx={{cursor:'pointer'}}>Already have an account? Login</Typography>
+
+
+                                <Button sx={{fontFamily:"GT Bold", fontSize:'15px', backgroundColor:"#fbc02d", mt:'20px'}} type="submit" variant="contained" color="secondary" fullWidth>
+                                REGISTER
+                                </Button>
+                        </form>
+                    </Box>
+
+                    {/* Footer Text */}
+                    <Box>
+                        <Typography fontFamily={"GT Light"} fontSize="15px" mb="20px" textAlign="center">
+                            © 2025 Maingi Shop Ltd. All rights reserved.
+                        </Typography>
+                    </Box>
                 </Box>
+              ):(
+                <Box sx={{backgroundColor:'#fbc02d'}} padding={'84px'}>
+                  <Box display="flex" flexDirection="column" justifyContent="space-between" p={4} sx={{ backgroundColor: 'white', margin:'auto', width:'500px', height:'700px', borderRadius:'15px' }}>
+                    {/* Header */}
+                    <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>
+                        
+                        <Typography
+                            fontSize="35px"
+                            fontWeight="bold"
+                            textAlign="center"
+                            color="#fbc02d"
+                            fontFamily={"GT Bold"}
+                        >
+                            MAINGI SHOP
+                        </Typography>
+                        <IconButton>
+                          <LocalMallOutlined style={{color:'fbc02d', fontSize:'40px'}}/>
+                        </IconButton>
+                    </Box>
 
-                <Typography style={{fontFamily:'GT Medium', color:'white'}} fontSize={'50px'} textAlign={'center'} mt={'130px'}> Create an cccount</Typography>
-                <Typography style={{fontFamily:'GT Regular', color:'white'}} textAlign={'center'} mb={'40px'}>Already have an account? <span style={{color:'#837BA2', cursor:'pointer'}} onClick={handleLogin}>Log in</span></Typography>
+                    {/* Login Form */}
+                    <Box display="flex" flexDirection="column" alignItems="center">
+                        <Typography fontFamily={"GT Regular"} fontSize="35px" fontWeight="bold" mb="5px" textAlign="center">
+                            Create Account
+                        </Typography>
+                       
+                        <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
+                                <TextField
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    value={formData.username}
+                                    onChange={handleChange}
+                                    aria-label="Username"
+                                    variant="outlined"
+                                    label="Username"
+                                    sx={{ mb: '20px' }}
+                                    fullWidth
+                                />
 
-                <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column', width:'500px', justifyContent:'center', margin:'auto'}}>
+                                <TextField 
+                                    value={formData.email}
+                                    name="email"
+                                    onChange={handleChange}
+                                    type="text"
+                                    label="Email"
+                                    variant="outlined"
+                                    sx={{mb:'20px'}}
+                                />
 
-                    <TextField 
-                        value={formData.username}
-                        name="username"
-                        onChange={handleChange}
-                        type="text"
-                        label="Username"
-                        InputProps={{
-                            style: {
-                              color: 'white', // Text color inside the input
-                              backgroundColor:'#3C364C'
-                            },
-                          }}
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: '#3C364A', // Default border color
-                              },
-                              '&:hover fieldset': {
-                                borderColor: 'white', // Border color on hover
-                              },
-                              '&.Mui-focused fieldset': {
-                                borderColor: 'white', // Border color when focused
-                              },
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: 'grey', // Label color
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                              color: 'white', // Label color when focused
-                            },
-                            mb:'20px'
-                          }}
-                        variant="outlined"
-                    />
+                                <TextField 
+                                    value={formData.phone_number}
+                                    name="phone_number"
+                                    onChange={handleChange}
+                                    type="text"
+                                    label="Phone Number"
+                                    variant="outlined"
+                                    sx={{mb:'20px'}}
+                                />
 
-                    <TextField 
-                        value={formData.email}
-                        name="email"
-                        onChange={handleChange}
-                        type="text"
-                        label="Email"
-                        InputProps={{
-                            style: {
-                              color: 'white', // Text color inside the input
-                              backgroundColor:'#3C364C'
-                            },
-                          }}
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: '#3C364A', // Default border color
-                              },
-                              '&:hover fieldset': {
-                                borderColor: 'white', // Border color on hover
-                              },
-                              '&.Mui-focused fieldset': {
-                                borderColor: 'white', // Border color when focused
-                              },
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: 'grey', // Label color
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                              color: 'white', // Label color when focused
-                            },
-                            mb:'20px'
-                          }}
-                        variant="outlined"
-                    />
 
-                    <TextField 
-                        value={formData.phone_number}
-                        name="phone_number"
-                        onChange={handleChange}
-                        type="text"
-                        label="Email"
-                        InputProps={{
-                            style: {
-                              color: 'white', // Text color inside the input
-                              backgroundColor:'#3C364C'
-                            },
-                          }}
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: '#3C364A', // Default border color
-                              },
-                              '&:hover fieldset': {
-                                borderColor: 'white', // Border color on hover
-                              },
-                              '&.Mui-focused fieldset': {
-                                borderColor: 'white', // Border color when focused
-                              },
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: 'grey', // Label color
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                              color: 'white', // Label color when focused
-                            },
-                            mb:'20px'
-                          }}
-                        variant="outlined"
-                    />
-                
-                    <TextField 
-                        value={formData.password}
-                        name="password"
-                        onChange={handleChange}
-                        type={showPassowrd ? 'text':'password'}
-                        label="Password"
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: '#3C364A', // Default border color
-                              },
-                              '&:hover fieldset': {
-                                borderColor: 'white', // Border color on hover
-                              },
-                              '&.Mui-focused fieldset': {
-                                borderColor: 'white', // Border color when focused
-                              },
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: 'grey', // Label color
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                              color: 'white', // Label color when focused
-                            },
-                            mb:'20px'
-                          }}
-                        variant="outlined"
-                        InputProps={{
-                            style: {
-                                color: 'white', // Text color inside the input
-                                backgroundColor:'#3C364C'
-                              },
-                            endAdornment:(
-                                <InputAdornment position="end">
-                                    <IconButton
-                                    onClick={handleShowPassword}
-                                    edge={'end'}
-                                    sx={{color:'grey'}}
-                                    >
-                                        {showPassowrd ? <VisibilityOff/> : <Visibility/>}
-                                    </IconButton>
-                                </InputAdornment>
-                            )
-                        }}
-                    />
+                                <TextField
+                                    type={showPassowrd ? 'text' : 'password'}
+                                    id="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    variant="outlined"
+                                    label="Password"
+                                    sx={{ mb:'20px', flex: 1 }}
+                                    InputProps={{
+                                        endAdornment: (
+                                          <IconButton onClick={handleShowPassword}>
+                                            {showPassowrd ? <VisibilityOff /> : <Visibility />}
+                                          </IconButton>
+                                        ),
+                                    }}
+                                />
 
-                    <TextField 
-                        value={formData.confirm_password}
-                        name="confirm_password"
-                        onChange={handleChange}
-                        type={showPassowrd ? 'text':'password'}
-                        label="Confirm Passowrd"
-                        InputProps={{
-                            style: {
-                              color: 'white', // Text color inside the input
-                              backgroundColor:'#3C364C'
-                            },
-                          }}
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: '#3C364A', // Default border color
-                              },
-                              '&:hover fieldset': {
-                                borderColor: 'white', // Border color on hover
-                              },
-                              '&.Mui-focused fieldset': {
-                                borderColor: 'white', // Border color when focused
-                              },
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: 'grey', // Label color
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                              color: 'white', // Label color when focused
-                            },
-                            mb:'20px'
-                          }}
-                        variant="outlined"
-                    />
 
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        sx={{backgroundColor:"#6D54B5"}}
-                    >
-                        <Typography fontFamily={'GT Regular'} padding={'7px'}>Create account</Typography>
-                    </Button>
-                    
-                </form>
+                                <TextField
+                                    type={showPassowrd ? 'text' : 'password'}
+                                    id="confirm_password"
+                                    name="confirm_password"
+                                    value={formData.confirm_password}
+                                    onChange={handleChange}
+                                    variant="outlined"
+                                    label="Confirm Password"
+                                    sx={{ flex: 1 }}
+                                    InputProps={{
+                                        endAdornment: (
+                                          <IconButton onClick={handleShowPassword}>
+                                            {showPassowrd ? <VisibilityOff /> : <Visibility />}
+                                          </IconButton>
+                                        ),
+                                    }}
+                                />
 
-                {error && <div style={{ color: 'red' }}>{error}</div>}
+                                <Typography fontFamily={"GT Regular"} onClick={handleLogin} sx={{cursor:'pointer'}}>Already have an account? Login</Typography>
 
+
+                                <Button sx={{fontFamily:"GT Bold", fontSize:'15px', backgroundColor:"#fbc02d", mt:'20px'}} type="submit" variant="contained" color="secondary" fullWidth>
+                                    REGISTER
+                                </Button>
+                        </form>
+                    </Box>
+
+                    {/* Footer Text */}
+                    <Box>
+                        <Typography fontFamily={"GT Light"} fontSize="15px" mb="20px" textAlign="center">
+                            © 2025 Maingi Shop Ltd. All rights reserved.
+                        </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              )}
             </Box>
+
+            
 
             <Snackbar 
               open={openSnackbar}

@@ -128,6 +128,8 @@ function CreateProduct (){
         formData.append('key_features', JSON.stringify(productData.key_features));
         formData.append('specifications', JSON.stringify(productData.specifications));
 
+        console.log("Final formData:", formData);
+
     
         fetch('https://shop-maingi-server.onrender.com/products', {
             method: 'POST',

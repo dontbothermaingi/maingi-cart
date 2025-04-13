@@ -1,8 +1,8 @@
 import LocalMallOutlined from "@mui/icons-material/LocalMallOutlined";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { Alert, Button, IconButton, InputAdornment, Snackbar, TextField, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Alert, Button, IconButton, Snackbar, TextField, Typography } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/system";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -66,10 +66,6 @@ function Login ({onLogin}){
         })
     }
 
-    function handleShowPassword(){
-        setShowPassword(!showPassword)
-    }
-
     function handleCloseSnackBar(event,reason){
         if(reason === 'clickaway') return ;
         setOpenSnackBar(false)
@@ -79,151 +75,182 @@ function Login ({onLogin}){
         navigate('/register')
     }
 
-    function handleHome(){
-      navigate('/')
-    }
-    return ( 
-        <Box 
-            display={'flex'} 
-            flexDirection={'row'} 
-            gap={'30px'} 
-            justifyContent={'space-between'} 
-            sx={{backgroundColor:'#171517'}} 
-            height={'93.42vh'}
-            padding={'2rem'}
-        >
+    const isMobile = useMediaQuery('(max-width: 768px)');
 
-            <Box flex={1}>
-                <img 
-                   src="/1.jpeg"
-                   alt="meditation"
-                   style={{width:'100%', height:'100%', borderRadius:'20px'}}
-                />
+    return ( 
+      <Box>
+      {isMobile ? (
+        <Box display="flex" flexDirection="column" justifyContent="space-between" p={4} sx={{margin:'auto', height:'700px',}}>
+            {/* Header */}
+            <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>
+                
+                <Typography
+                    fontSize="35px"
+                    fontWeight="bold"
+                    textAlign="center"
+                    color="#fbc02d"
+                    fontFamily={"GT Bold"}
+                >
+                    MAINGI SHOP
+                </Typography>
+                <IconButton>
+                  <LocalMallOutlined style={{color:'fbc02d', fontSize:'40px'}}/>
+                </IconButton>
             </Box>
 
-            <Box flex={1}>
+            {/* Login Form */}
+            <Box display="flex" flexDirection="column" alignItems="center">
+                <Typography fontFamily={"GT Regular"} fontSize="35px" fontWeight="bold" mb="5px" textAlign="center">
+                    Welcome back!
+                </Typography>
+                <Typography fontFamily={"GT Light"} fontSize="15px" mb="20px" textAlign="center">
+                    We're glad to see you again. Please enter your credentials to continue accessing your account.
+                </Typography>
+                <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
+                        <TextField
+                            type="text"
+                            id="username"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            aria-label="Username"
+                            variant="outlined"
+                            label="Username"
+                            sx={{ mb: '20px' }}
+                            fullWidth
+                        />
 
-                <Box display={'flex'} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
-                        <IconButton sx={{color:'white'}}>
-                            <LocalMallOutlined sx={{fontSize:'33px'}}/>
-                        </IconButton>
-                        <Typography style={{fontFamily:'GT Bold', cursor:'pointer', color:'white'}} fontSize={'40px'} onClick={handleHome} >Maingi Cart</Typography>
-                </Box>
 
-                <Typography style={{fontFamily:'GT Medium', color:'white'}} fontSize={'50px'} textAlign={'center'} mt={'130px'}>Welcome Back!</Typography>
-                <Typography style={{fontFamily:'GT Regular', color:'white'}} textAlign={'center'} mb={'40px'}>You don't have an account? <span style={{color:'#837BA2', cursor:'pointer'}} onClick={handleRegister}>Register</span></Typography>
+                        <TextField
+                            type={showPassword ? 'text' : 'password'}
+                            id="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            variant="outlined"
+                            label="Password"
+                            sx={{ flex: 1 }}
+                            InputProps={{
+                                endAdornment: (
+                                  <IconButton onClick={() => setShowPassword((prev) => !prev)}>
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                  </IconButton>
+                                ),
+                              }}
+                        />
 
-                <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column', width:'500px', justifyContent:'center', margin:'auto'}}>
+                        <Typography fontFamily={"GT Regular"} onClick={handleRegister} sx={{cursor:'pointer'}}>No account? Register</Typography>
 
-                    <TextField 
-                        value={formData.username}
-                        onChange={handleChange}
-                        type="text"
-                        label="Username"
-                        variant="outlined"
-                        InputProps={{
-                            style: {
-                              color: 'white', // Text color inside the input
-                              backgroundColor:'#3C364C'
-                            },
-                          }}
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: '#3C364A', // Default border color
-                              },
-                              '&:hover fieldset': {
-                                borderColor: 'white', // Border color on hover
-                              },
-                              '&.Mui-focused fieldset': {
-                                borderColor: 'white', // Border color when focused
-                              },
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: 'grey', // Label color
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                              color: 'white', // Label color when focused
-                            },
-                            mb:'20px'
-                          }}
-                        name="username"
-                        color="white"
-                    />
 
-                    <TextField 
-                        value={formData.password}
-                        name="password"
-                        onChange={handleChange}
-                        type={showPassword ? 'text':'password'}
-                        label="Password"
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: '#3C364A', // Default border color
-                              },
-                              '&:hover fieldset': {
-                                borderColor: 'white', // Border color on hover
-                              },
-                              '&.Mui-focused fieldset': {
-                                borderColor: 'white', // Border color when focused
-                              },
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: 'grey', // Label color
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                              color: 'white', // Label color when focused
-                            },
-                            mb:'20px'
-                          }}
-                        variant="outlined"
-                        InputProps={{
-                            style: {
-                                color: 'white', // Text color inside the input
-                                backgroundColor:'#3C364C'
-                              },
-                            endAdornment:(
-                                <InputAdornment position="end">
-                                    <IconButton
-                                    onClick={handleShowPassword}
-                                    edge={'end'}
-                                    sx={{color:'grey'}}
-                                    >
-                                        {showPassword ? <VisibilityOff/> : <Visibility/>}
-                                    </IconButton>
-                                </InputAdornment>
-                            )
-                        }}
-                    />
-
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        sx={{backgroundColor:"#6D54B5"}}
-                    >
-                        <Typography fontFamily={'GT Regular'} padding={'7px'}>Login</Typography>
-                    </Button>
-                    
+                        <Button sx={{fontFamily:"GT Bold", fontSize:'15px', backgroundColor:"#fbc02d", mt:'20px'}} type="submit" variant="contained" color="secondary" fullWidth>
+                            LOGIN
+                        </Button>
                 </form>
             </Box>
 
-            <Snackbar 
-              open={openSnackBar}
-              onClose={handleCloseSnackBar}
-              autoHideDuration={6000}
-              anchorOrigin={{vertical:'top', horizontal:'center'}}
-            >
-                <Alert
-                onClose={handleCloseSnackBar}
-                  severity={successMessage.startsWith('Failed') ? 'error': 'success'}
-                  sx={{ width: '100%' }}
-                >
-                    {successMessage}
-                </Alert>
-            </Snackbar>
-
+            {/* Footer Text */}
+            <Box>
+                <Typography fontFamily={"GT Light"} fontSize="15px" mb="20px" textAlign="center">
+                    © 2025 Maingi Shop Ltd. All rights reserved.
+                </Typography>
+            </Box>
         </Box>
+      ):(
+        <Box sx={{backgroundColor:'#fbc02d'}} padding={'84px'}>
+          <Box display="flex" flexDirection="column" justifyContent="space-between" p={4} sx={{ backgroundColor: 'white', margin:'auto', width:'500px', height:'700px', borderRadius:'15px' }}>
+            {/* Header */}
+            <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>
+                
+                <Typography
+                    fontSize="35px"
+                    fontWeight="bold"
+                    textAlign="center"
+                    color="#fbc02d"
+                    fontFamily={"GT Bold"}
+                >
+                    MAINGI SHOP
+                </Typography>
+                <IconButton>
+                  <LocalMallOutlined style={{color:'fbc02d', fontSize:'40px'}}/>
+                </IconButton>
+            </Box>
+
+            {/* Login Form */}
+            <Box display="flex" flexDirection="column" alignItems="center">
+                <Typography fontFamily={"GT Regular"} fontSize="35px" fontWeight="bold" mb="5px" textAlign="center">
+                    Welcome back!
+                </Typography>
+                <Typography fontFamily={"GT Light"} fontSize="15px" mb="20px" textAlign="center">
+                    We're glad to see you again. Please enter your credentials to continue accessing your account.
+                </Typography>
+                <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
+                        <TextField
+                            type="text"
+                            id="username"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            aria-label="Username"
+                            variant="outlined"
+                            label="Username"
+                            sx={{ mb: '20px' }}
+                            fullWidth
+                        />
+
+
+                        <TextField
+                            type={showPassword ? 'text' : 'password'}
+                            id="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            variant="outlined"
+                            label="Password"
+                            sx={{ flex: 1 }}
+                            InputProps={{
+                                endAdornment: (
+                                  <IconButton onClick={() => setShowPassword((prev) => !prev)}>
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                  </IconButton>
+                                ),
+                              }}
+                        />
+
+                        <Typography fontFamily={"GT Regular"} onClick={handleRegister} sx={{cursor:'pointer'}}>No account? Register</Typography>
+
+
+                        <Button sx={{fontFamily:"GT Bold", fontSize:'15px', backgroundColor:"#fbc02d", mt:'20px'}} type="submit" variant="contained" color="secondary" fullWidth>
+                            LOGIN
+                        </Button>
+                </form>
+            </Box>
+
+            {/* Footer Text */}
+            <Box>
+                <Typography fontFamily={"GT Light"} fontSize="15px" mb="20px" textAlign="center">
+                    © 2025 Maingi Shop Ltd. All rights reserved.
+                </Typography>
+            </Box>
+          </Box>
+        </Box>
+      )}
+
+        <Snackbar 
+          open={openSnackBar}
+          onClose={handleCloseSnackBar}
+          autoHideDuration={6000}
+          anchorOrigin={{vertical:'top', horizontal:'center'}}
+        >
+            <Alert
+            onClose={handleCloseSnackBar}
+              severity={successMessage.startsWith('Failed') ? 'error': 'success'}
+              sx={{ width: '100%' }}
+            >
+                {successMessage}
+            </Alert>
+        </Snackbar>
+
+      </Box>
      );
 }
  

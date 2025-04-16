@@ -122,8 +122,9 @@ function Dashboard() {
                                         backgroundPosition: 'center',
                                         borderRadius: '12px',
                                         width: '60%',
-                                        height: '150px', // or dynamic
+                                        height: '170px', // or dynamic
                                         cursor: 'pointer',
+                                        mt:'20px'
                                     }}
                                     onClick={() => handleProductDisplay(item.id)}
                                 />   
@@ -214,6 +215,7 @@ function Dashboard() {
                                         width: '62%',
                                         height: '250px', // or dynamic
                                         cursor: 'pointer',
+                                        mt:'30px'
                                     }}
                                     onClick={() => handleProductDisplay(item.id)}
                                 />          
